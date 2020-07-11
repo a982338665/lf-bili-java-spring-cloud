@@ -40,5 +40,21 @@
 2.包含技术：-- 看file/2-  
 
 ### 3.第二季boot和could技术选型：
-1.
-2.
+1.上篇：boot2.X + cloud H版，官方强烈建议升级到boot2.X   
+2.下篇：cloud alibaba  
+3.选择合适的boot和cloud版本：lf-bili-java-sprig-cloud\file\3-i-boot和cloud的版本选择.jpg
+    
+    1.查看大版本对应关系：https://spring.io/projects/spring-cloud
+    2.查看小版本对应关系：https://start.spring.io/actuator/info
+    3.推荐版本: 选定cloud版本后，可在官网点进查看推荐的boot版本
+    
+4.选用版本：必须一致
+    
+    1.java8
+    2.maven3.5及以上
+    3.mysql5.7及以上
+    4.cloud Hoxton.SR1
+    5.boot 2.2.2.RELEASE
+    6.cloud alibaba 2.1.0.RELEASE
+
+5.
