@@ -112,5 +112,5 @@
     ·File Type过滤：5-i-设置FileType过滤.jpg
 
 ### 6.父工程pom文件：
-
+* 添加pom依赖管理
  
