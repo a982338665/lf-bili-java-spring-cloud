@@ -1,6 +1,6 @@
 # lf-bili-java-sprig-cloud
 
->2020最新版SpringCloud(H版&alibaba)框架开发
+>2020最新版SpringCloud(H版&alibaba)框架开发 2月
 >https://www.bilibili.com/video/BV18E411x7eT?p=149
 >0基础：0-4
 >初级：5-9
@@ -97,3 +97,20 @@
         ·Bus：可以使用
         ·Nacos：阿里，推荐使用
     8.具体问题查看Cloud官网    
+## 4.微服务架构编码构建
+### 5.父工程Project空间新建：
+> 约定 > 配置 > 编码  
+
+1.新建工程步骤：
+    ·new Project
+    ·聚合总父工程名称
+    ·maven版本
+    ·工程名字
+    ·字符编码: 5-i-设置字符编码.jpg
+    ·注解生效激活：5-i-配置注解生效.jpg
+    ·java编译版本选8：5-i-设置编译版本.jpg
+    ·File Type过滤：5-i-设置FileType过滤.jpg
+
+### 6.父工程pom文件：
+
+ 
