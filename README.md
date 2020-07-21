@@ -143,5 +143,20 @@
     1.子工程加依赖：spring-boot-devtools
     2.父工程加插件：spring-boot-maven-plugin
     
+### 12. 消费者订单模块1
+    
+    两个服务交互的方式：
+        1.HttpClient
+        2.RestTemplate：Spring自己提供的远程调用的方法
+            ·提供了多种便捷访问远程Http服务的方法
+            ·是一种简单便捷的访问restful服务模板类，是Spring提供的用于访问Rest服务的客户端模板工具集
+            ·官网：https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html
+            ·使用：
+                1.添加配置config
+                2.(url,requestMap,ResponseBean.class) 分别代表rest请求地址，参数，http响应转换被转换成的对象类型
+        
+### 13. 消费者订单模块2
+### 14. 工程重构
+### 14. Eureka基础知识
 ### FInal.模块介绍
 cloud-provider-payment8001  支付模块
