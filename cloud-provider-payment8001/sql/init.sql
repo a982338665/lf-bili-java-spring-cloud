@@ -8,3 +8,4 @@ create TABLE payment
   DEFAULT CHARSET = utf8;
 
 
+INSERT INTO `db2019`.`payment` (`id`, `serial`) VALUES ('31', '尚硅谷');

@@ -121,6 +121,24 @@
 4.主启动  
 5.业务类
 ### 9.支付模块构建-2：
+    
+### 10. 支付模块构建-3：
+    
+     1.请求：http://localhost:8001/payment/get/31
+         响应：{"code":200,"message":"查询成功,serverPort:  ","data":{"id":31,"serial":"尚硅谷"}}
+     2.请求：http://localhost:8001/payment/create 【post】
+       参数：
+         {
+             "serial":"hhhhhh"
+         }
+       响应：
+         {
+             "code": 200,
+             "message": "插入数据库成功,serverPort: ",
+             "data": 1
+         }
+### 11. 热部署DevTools
 
-### 10.模块介绍
+    
+### FInal.模块介绍
 cloud-provider-payment8001  支付模块
