@@ -156,6 +156,10 @@
                 2.(url,requestMap,ResponseBean.class) 分别代表rest请求地址，参数，http响应转换被转换成的对象类型
         
 ### 13. 消费者订单模块2
+
+    http://localhost/consumer/payment/get/31
+    http://localhost/consumer/payment/create?serial=111
+
 ### 14. 工程重构
 ### 14. Eureka基础知识
 ### FInal.模块介绍
