@@ -137,8 +137,11 @@
              "message": "插入数据库成功,serverPort: ",
              "data": 1
          }
+         
 ### 11. 热部署DevTools
-
+    
+    1.子工程加依赖：spring-boot-devtools
+    2.父工程加插件：spring-boot-maven-plugin
     
 ### FInal.模块介绍
 cloud-provider-payment8001  支付模块
