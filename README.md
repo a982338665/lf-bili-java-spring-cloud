@@ -335,8 +335,16 @@
 ## 7.Consul服务注册与发现
 ### 7.1  （31） Consul简介
 
-    1.
-
+    1.go语言写的，提供了微服务系统中的服务治理，配置中心，控制总线等功能，每个功能都可以独立使用，也可以一起使用构建全方位的服务网格，提供了完整的服务网格解决方案
+    2.具有很多优点：
+        基于raft协议，比较简洁，支持健康检查，同时支持http和DNS协议，支持跨数据中心的WAN集群，提供图形界面，跨平台，支持linux，mac，windows    
+        kv存储：key，value存储
+        多数据中心
+        可视化界面
+    3.官网：https://www.consul.io 下载地址也在这
+    4.文档：https://www.springcloud.cc/
+        https://www.springcloud.cc/spring-cloud-consul.html
+        
 ### 7.2  （32） 安装并运行Consul
 ### 7.3  （33） 服务提供者注册进Consul
 ### 7.4  （34） 服务消费者注册进Consul
