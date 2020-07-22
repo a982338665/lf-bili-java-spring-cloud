@@ -32,6 +32,8 @@
 * 21.spring-cloud Alibaba 大厂面试题第三季
 
 ## 1.微服务架构零基础理论入门-小白入门
+>二级标题为目录对应的章节 例如 ## 1.  
+>三级标题对应视频课程的目录小节 1.1 为章小节排序，（1）对应视频小节，例如：### 1.1 （1）
 ### 1.1 （1）课程说明：
 1.课程内容：spring-cloud / spring-cloud alibaba  
 2.技术要求：java8，maven，github，git，nginx，rabbitmq，springboot2.X  
@@ -332,6 +334,9 @@
 ### 6.3  （30） 订单服务注册进zookeeper
 ## 7.Consul服务注册与发现
 ### 7.1  （31） Consul简介
+
+    1.
+
 ### 7.2  （32） 安装并运行Consul
 ### 7.3  （33） 服务提供者注册进Consul
 ### 7.4  （34） 服务消费者注册进Consul
