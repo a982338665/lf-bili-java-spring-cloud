@@ -21,3 +21,8 @@ eureka:
     service-url:
       #集群指向其它eureka
       defaultZone: http://eureka7002.com:7002/eureka/
+      server:
+        #关闭自我保护机制，保证不可用服务被及时踢除
+        enable-self-preservation: false
+        #默认时间是90秒，现在改为2秒
+        eviction-interval-timer-in-ms: 2000
