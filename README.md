@@ -266,9 +266,32 @@
 
 ### 5.13 （27） eureka停更说明
 
+    eureka2.0不在维护，停止更新，若还在使用，后果自负
+    zookeeper替代eureka
+
 ## 6. zookeeper服务注册与发现
-### 5.9  （23） actuator微服务信息完善
-### 5.9  （23） actuator微服务信息完善
+### 6.1  （28） 支付服务注册进zookeeper
+    
+    1.docker启动一个zookeeper：暂时不关注集群
+        $ docker pull zookeeper:3.4.9
+        $ docker run --name some-zookeeper --restart always -d zookeeper:3.4.9  总是重启，测试不建议
+        $ docker run --name some-zookeeper -d zookeeper:3.4.9   启动方式，不暴露外网
+        $ docker run --name some-zookeeper -p 2181:2181 -d zookeeper:3.4.9   启动方式，端口2181暴露外网，测试时使用命令
+        启动后会EXPOSE端口：2181， 2888， 3888。并设置为始终重启。
+        $ docker exec -it 容器id zkCli.sh  启动zk客户端
+    2.访问：http://localhost:8004/payment/zk
+        springcloud with zookeeper: 8004 a461f050-628a-48cb-92cc-3d494b0fc581
+    
+    
+### 6.2  （29） 临时还是持久节点
+### 6.3  （30） 订单服务注册进zookeeper
+## 7.Consul服务注册与发现
+### 7.1  （31） Consul简介
+### 7.2  （32） 安装并运行Consul
+### 7.3  （33） 服务提供者注册进Consul
+### 7.4  （34） 服务消费者注册进Consul
+### 7.5  （35） 三个注册中心的异同点
+
 
 
 ### FInal.模块介绍
