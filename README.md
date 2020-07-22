@@ -185,6 +185,9 @@
             如果Eureka在多个心跳周期内没有接收到某个节点的心跳，Eureka将会从服务注册表把这个服务节点移除，默认90秒
             
 ### 5.2  （16） Eureka Server服务端安装
+    
+    cloud-eureka-server7001     服务注册中心：http://localhost:7001/
+    
 ### 5.3  （17） 支付微服务8001 入驻进eurekaServer
 ### 5.4  （18） 订单微服务80   入驻进eurekaServer
 ### 5.5  （19） Eureka集群原理说明
@@ -195,6 +198,8 @@
 
 
 ### FInal.模块介绍
+cloud-api-commons           公共模块
 cloud-provider-payment8001  支付模块
 cloud-consumer-order80      消费者订单模块
+cloud-eureka-server7001     服务注册中心：http://localhost:7001/
 
