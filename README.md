@@ -32,16 +32,16 @@
 * 21.spring-cloud Alibaba 大厂面试题第三季
 
 ## 1.微服务架构零基础理论入门-小白入门
-### 1.课程说明：
+### 1.1 （1）课程说明：
 1.课程内容：spring-cloud / spring-cloud alibaba  
 2.技术要求：java8，maven，github，git，nginx，rabbitmq，springboot2.X  
 
-### 2.0基础微服务架构理论入门：
+### 1.2 （2）基础微服务架构理论入门：
 1.微服务：轻量级，可独立部署  
 2.包含技术：-- 看file/2-  
 
 ## 2.从2.2.X和H版开始说起
-### 3.第二季boot和could技术选型：
+### 2.1 （3）第二季boot和could技术选型：
 1.上篇：boot2.X + cloud H版，官方强烈建议升级到boot2.X   
 2.下篇：cloud alibaba  
 3.选择合适的boot和cloud版本：lf-bili-java-sprig-cloud\file\3-i-boot和cloud的版本选择.jpg
@@ -60,7 +60,7 @@
     6.cloud alibaba 2.1.0.RELEASE
 
 ## 3.关于cloud各种组件的停更，升级，替换
-### 4.cloud组件停更说明：
+### 3.1 (4) cloud组件停更说明：
 1.停更引发的"升级惨案":
     
     1.停更不停用： 
@@ -98,7 +98,7 @@
         ·Nacos：阿里，推荐使用
     8.具体问题查看Cloud官网    
 ## 4.微服务架构编码构建
-### 5.父工程Project空间新建：
+### 4.1 （5）父工程Project空间新建：
 > 约定 > 配置 > 编码  
 > 新建工程步骤：
 
@@ -111,18 +111,18 @@
     ·java编译版本选8：5-i-设置编译版本.jpg
     ·File Type过滤：5-i-设置FileType过滤.jpg
 
-### 6.父工程pom文件：
+### 4.2 （6）父工程pom文件：
 * 添加pom依赖管理
-### 7.dependencyManagement 和dependencies的区别：
-### 8.支付模块构建-1：
+### 4.3 （7）dependencyManagement 和dependencies的区别：
+### 4.4  (8)支付模块构建-1：
 1.建module  
 2.改pom  
 3.写yml  
 4.主启动  
 5.业务类
-### 9.支付模块构建-2：
+### 4.5  (9)支付模块构建-2：
     
-### 10. 支付模块构建-3：
+### 4.7  (10) 支付模块构建-3：
     
      1.请求：http://localhost:8001/payment/get/31
          响应：{"code":200,"message":"查询成功,serverPort:  ","data":{"id":31,"serial":"尚硅谷"}}
@@ -138,12 +138,12 @@
              "data": 1
          }
          
-### 11. 热部署DevTools
+### 4.8  (11)热部署DevTools
     
     1.子工程加依赖：spring-boot-devtools
     2.父工程加插件：spring-boot-maven-plugin
     
-### 12. 消费者订单模块1
+### 4.9  (12) 消费者订单模块1
     
     两个服务交互的方式：
         1.HttpClient
@@ -155,12 +155,30 @@
                 1.添加配置config
                 2.(url,requestMap,ResponseBean.class) 分别代表rest请求地址，参数，http响应转换被转换成的对象类型
         
-### 13. 消费者订单模块2
+### 4.10  (13) 消费者订单模块2
 
     http://localhost/consumer/payment/get/31
     http://localhost/consumer/payment/create?serial=111
 
-### 14. 工程重构
-### 14. Eureka基础知识
+### 4.11  (14) 工程重构
+    
+    0基础结束，0-4章
+    
+## 5.Eureka服务注册与发现
+### 5.1  （15） Eureka基础知识
+    
+    
+### 5.2  （16） Eureka Server服务端安装
+### 5.3  （17） 支付微服务8001 入驻进eurekaServer
+### 5.4  （18） 订单微服务80   入驻进eurekaServer
+### 5.5  （19） Eureka集群原理说明
+### 5.6  （20） Eureka集群环境构建
+### 5.7  （21） 订单支付两微服务注册进Eureka集群
+### 5.8  （22） 支付微服务集群配置
+### 5.9  （23） actuator微服务信息完善
+
+
 ### FInal.模块介绍
 cloud-provider-payment8001  支付模块
+cloud-consumer-order80      消费者订单模块
+
