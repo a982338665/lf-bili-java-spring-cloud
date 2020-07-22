@@ -365,9 +365,31 @@
     访问 localhost:8500
 
 ### 7.5  （35） 三个注册中心的异同点
+|组件名|语言|CAP|服务健康检查|对外暴露接口|springcloud集成
+|----|----|----|----|----|----|
+Eureka  |   java    |AP|可配支持|http|已集成
+Consul  |   go      |CP|支持|HTTP/DNS|已集成
+Zookeeper|  java    |CP|支持|客户端|已集成
+CAP ：
 
-
-
+    C：Consistency 强一致性
+    A：Avaliability 可用性
+    p：Partition tolerance  分布式的分区容错性
+    由于项目本身就是分布式，所以要么AP，要么CP
+    CAP理论关注的粒度是数据，而不是整体系统设计的
+    CAP经典图：
+        ·最多只能同时较好的满足两个
+        ·CAP的理论核心是：
+            一个分布式系统不可能同时很好的满足一致性，可用性，和分区容错这三个需求
+            因此，根据CAP原则，将nosql数据库分成了满足CA，CP，AP原则的三大类
+        ·CA：单点集群满足一致性，可用性的系统，通常在可拓展性上不太行
+        ·CP：满足一致性，分区容忍性 的系统，通常性能不是特别高
+        ·AP：满足可用性，分区容忍性 的系统，通常对一致性要求不高
+    一般要先保证可用性，在保证一致性
+    A主要保证高可用
+    C主要保证数据一致
+    
+    
 ### FInal.模块介绍
 cloud-api-commons           公共模块
 cloud-provider-payment8001  支付模块
