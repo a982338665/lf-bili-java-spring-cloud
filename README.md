@@ -346,6 +346,14 @@
         https://www.springcloud.cc/spring-cloud-consul.html
         
 ### 7.2  （32） 安装并运行Consul
+
+    下载地址：https://www.consul.io/downloads
+    下载解压：consul.exe
+    当前目录执行查看版本：consul --version 
+    启动：consul agent --dev
+        D:\install-soft\chrome\consul_1.8.0_windows_amd64>D:\install-soft\chrome\consul_1.8.0_windows_amd64>consul agent --dev
+    访问：localhost:8500
+    
 ### 7.3  （33） 服务提供者注册进Consul
 ### 7.4  （34） 服务消费者注册进Consul
 ### 7.5  （35） 三个注册中心的异同点
