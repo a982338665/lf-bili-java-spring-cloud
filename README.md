@@ -279,9 +279,50 @@
         $ docker run --name some-zookeeper -p 2181:2181 -d zookeeper:3.4.9   启动方式，端口2181暴露外网，测试时使用命令
         启动后会EXPOSE端口：2181， 2888， 3888。并设置为始终重启。
         $ docker exec -it 容器id zkCli.sh  启动zk客户端
+        docker exec -it 容器 bash
+        [zk: localhost:2181(CONNECTED) 4] ls /
+        [zk: localhost:2181(CONNECTED) 4] ls /services 进入容器内部查看注册信息
+        [zk: localhost:2181(CONNECTED) 4] ls /services/cloud-provider-payment
+        [6c24d3fe-6b34-4096-8d97-0ef664843a51]
+        [zk: localhost:2181(CONNECTED) 5] ls /services/cloud-provider-payment/6c24d3fe-6b34-4096-8d97-0ef664843a51
+        []
+        [zk: localhost:2181(CONNECTED) 6] get /services/cloud-provider-payment/6c24d3fe-6b34-4096-8d97-0ef664843a51 查看详细注册信息
+        {"name":"cloud-provider-payment","id":"6c24d3fe-6b34-4096-8d97-0ef664843a51","address":"DESKTOP-PVHJEH1","port":8004,"sslPort":null,"payload":{"@class":"org.springframework.cloud.zookeeper.discovery.ZookeeperInstance","id":"application-1","name":"cloud-provider-payment","metadata":{}},"registrationTimeUTC":1595411152787,"serviceType":"DYNAMIC","uriSpec":{"parts":[{"value":"scheme","variable":true},{"value":"://","variable":false},{"value":"address","variable":true},{"value":":","variable":false},{"value":"port","variable":true}]}}
+        cZxid = 0x8
+        ctime = Wed Jul 22 09:45:49 GMT 2020
+        mZxid = 0x8
+        mtime = Wed Jul 22 09:45:49 GMT 2020
+        pZxid = 0x8
+        cversion = 0
+        dataVersion = 0
+        aclVersion = 0
+        ephemeralOwner = 0x17375d0d34b0001
+        dataLength = 536
+        numChildren = 0
+        [zk: localhost:2181(CONNECTED) 7] 
     2.访问：http://localhost:8004/payment/zk
         springcloud with zookeeper: 8004 a461f050-628a-48cb-92cc-3d494b0fc581
-    
+    3.zk可视化工具：zkui     原文链接：https://blog.csdn.net/hacker_Lees/article/details/104989284
+        0.假设我们的程序是分布式部署在多台机器上，如果我们要改变程序的配置文件，需要逐台机器去修改，非常麻烦，现在把这些配置全部放到zookeeper上去，保存在 zookeeper 的某个目录节点中，
+          然后所有相关应用程序对这个目录节点进行监听，一旦配置信息发生变化，每个应用程序就会收到 zookeeper 的通知，然后从 zookeeper 获取新的配置信息应用到系统中。
+        1.git clone https://github.com/DeemOpen/zkui.git
+        2.源码编译需要安装 maven
+           # wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+           #cd zkui/
+           //若服务器中已安装maven，忽略此命令
+           #yum install -y maven
+           //打jar包
+           #mvn clean install
+        3.修改配置文件默认值
+           #vim config.cfg
+                serverPort=9090     #指定端口
+                zkServer=172.168.0.110:2181
+                sessionTimeout=300000
+        4.启动程序至后台
+            2.0-SNAPSHOT 会随软件的更新版本不同而不同，执行时请查看target 目录中真正生成的版本
+            nohup java -jar target/zkui-2.0-SNAPSHOT-jar-with-dependencies.jar & 
+        5.用浏览器访问：
+            http://172.168.0.110:9090/
     
 ### 6.2  （29） 临时还是持久节点
 ### 6.3  （30） 订单服务注册进zookeeper
