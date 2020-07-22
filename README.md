@@ -210,9 +210,22 @@
 
 ### 5.8  （22） 支付微服务集群配置
     
-    
+    加注解@LoadBalanced
+    改访问地址：http://CLOUD-PAYMENT-SERVICE
     
 ### 5.9  （23） actuator微服务信息完善
+
+    主机名称、服务名称的修改：eureka界面上出现主机名，去掉，例如：
+        CLOUD-ORDER-SERVICE	n/a (1)	(1)	UP (1) - DESKTOP-PVHJEH1:cloud-order-service:80
+        需要去掉DESKTOP-PVHJEH1
+        修改yml文件：
+            添加：instance:
+                     instance-id: payment8002
+    IP显示修改：
+        修改yml：
+            添加：
+                     prefer-ip-address: true
+    
 ### 5.10 （24） 服务发现Discovery
 ### 5.11 （25） eureka自我保护理论知识
 ### 5.12 （26） 怎么禁止自我保护
