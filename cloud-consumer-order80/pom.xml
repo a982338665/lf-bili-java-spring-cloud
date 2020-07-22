@@ -17,11 +17,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        -->
         <dependency>
             <groupId>pers.li.cloud</groupId>
             <artifactId>cloud-api-commons</artifactId>
