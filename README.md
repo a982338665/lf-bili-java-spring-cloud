@@ -227,6 +227,15 @@
                      prefer-ip-address: true
     
 ### 5.10 （24） 服务发现Discovery
+
+    1.功能：
+        对于注册进eureka里面的微服务，可以通过服务发现来获得该服务信息
+    2.修改：8001，8002的controller
+    3.启动类添加注解
+    4.访问：
+        http://localhost:8001/payment/discovery
+        {"services":["cloud-payment-service","cloud-order-service"],"order":0}
+    
 ### 5.11 （25） eureka自我保护理论知识
 ### 5.12 （26） 怎么禁止自我保护
 ### 5.13 （27） eureka停更说明
