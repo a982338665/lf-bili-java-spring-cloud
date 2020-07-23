@@ -453,23 +453,25 @@ CAP ：
         测试：http://localhost/consumer/payment/get/31 无规则交替出现 8001,8002
         
 ### 8.5  （40） ribbon默认负载轮询算法原理
+    
+    1.
 ### 8.6  （41） RoundRobinRule源码分析
 ### 8.7  （42） ribbon之手写轮询算法
 ## 9.OpenFeign服务接口调用
-### 9.1  （43） OpenFeign是什么
-### 9.2  （44） OpenFeign服务调用
-### 9.3  （45） OpenFeign超时控制
-### 9.4  （46） OpenFeign日志增强
+### 9.1    （43） OpenFeign是什么
+### 9.2    （44） OpenFeign服务调用
+### 9.3    （45） OpenFeign超时控制
+### 9.4    （46） OpenFeign日志增强
 ## 10.Hystrix断路由
-### 10.1  （47） Hystrix是什么
-### 10.2 （48） Hystrix停更进维
-### 10.3  （49） Hystrix服务降级熔断限流概念初讲
-### 10.4  （50） Hystrix支付微服务构建
-### 10.5  （51） Jmeter高并发压测后卡顿
-### 10.6  （52） 订单微服务调用支付服务出现卡顿
-### 10.7  （53） 降级容错解决的维度要求
-### 10.8  （54） Hystrix服务降级支付侧fallback
-### 10.9  （55） Hystrix服务降级订单侧fallback
+### 10.1   （47） Hystrix是什么
+### 10.2   （48） Hystrix停更进维
+### 10.3   （49） Hystrix服务降级熔断限流概念初讲
+### 10.4   （50） Hystrix支付微服务构建
+### 10.5   （51） Jmeter高并发压测后卡顿
+### 10.6   （52） 订单微服务调用支付服务出现卡顿
+### 10.7   （53） 降级容错解决的维度要求
+### 10.8   （54） Hystrix服务降级支付侧fallback
+### 10.9   （55） Hystrix服务降级订单侧fallback
 ### 10.10  （56） Hystrix全局服务降级DefaultProperties
 ### 10.11  （57） Hystrix通配服务降级FeignFallback
 ### 10.12  （58） Hystrix服务熔断理论
@@ -480,102 +482,102 @@ CAP ：
 ### 10.17  （63） Hystrix图形化 DashBoard搭建
 ### 10.18  （64） Hystrix图形化 DashBoard监控实战
 ## 11.zuul路由网关
-### 11.1  （65） GateWay和Zuul课程说明
+### 11.1   （65） GateWay和Zuul课程说明
 ## 12.GateWay新一代网关
-### 12.1  （66） GateWay是什么
-### 12.2  （67） GateWay非阻塞异步模型
-### 12.3  （68） GateWay工作流程
-### 12.4  （69） GateWay9527搭建
-### 12.5  （60） GateWay配置路由的两种方式
-### 12.6  （71） GateWay配置动态路由
-### 12.7  （72） GateWay常用的Predicate
-### 12.8  （73） GateWay的Filter
+### 12.1   （66） GateWay是什么
+### 12.2   （67） GateWay非阻塞异步模型
+### 12.3   （68） GateWay工作流程
+### 12.4   （69） GateWay9527搭建
+### 12.5   （60） GateWay配置路由的两种方式
+### 12.6   （71） GateWay配置动态路由
+### 12.7   （72） GateWay常用的Predicate
+### 12.8   （73） GateWay的Filter
 ## 13.spring-cloud config 分布式配置中心
-### 13.1  （74） Config分布式配置中心介绍
-### 13.2  （75） Config分布式配置 总控中心搭建
-### 13.3  （76） Config客户端配置与测试
-### 13.4  （77） Config动态刷新之手动版
+### 13.1   （74） Config分布式配置中心介绍
+### 13.2   （75） Config分布式配置 总控中心搭建
+### 13.3   （76） Config客户端配置与测试
+### 13.4   （77） Config动态刷新之手动版
 ## 14.spring-cloud BUS总线
-### 14.1  （78） BUS消息总线是什么
-### 14.2  （79） BUS之RabbitMq环境配置
-### 14.3  （80） BUS动态刷新全局广播的设计思想和选型
-### 14.4  （81） BUS动态刷新全局广播配置实现
-### 14.5  （82） BUS动态刷新定点通知
+### 14.1   （78） BUS消息总线是什么
+### 14.2   （79） BUS之RabbitMq环境配置
+### 14.3   （80） BUS动态刷新全局广播的设计思想和选型
+### 14.4   （81） BUS动态刷新全局广播配置实现
+### 14.5   （82） BUS动态刷新定点通知
 ## 15.spring-cloud Stream 消息驱动
-### 15.1  （83） Stream为什么被引入
-### 15.2  （84） Stream是什么及Binder介绍
-### 15.3  （85） Stream的设计思想
-### 15.4  （86） Stream编码常用注解简介
-### 15.5  （87） Stream消息启动及生产者
-### 15.6  （88） Stream消息启动及消费者
-### 15.7  （89） Stream之消息重复消费
-### 15.8  （90） Stream之group解决消息重复消费
-### 15.9  （91） Stream之消息持久化
+### 15.1   （83） Stream为什么被引入
+### 15.2   （84） Stream是什么及Binder介绍
+### 15.3   （85） Stream的设计思想
+### 15.4   （86） Stream编码常用注解简介
+### 15.5   （87） Stream消息启动及生产者
+### 15.6   （88） Stream消息启动及消费者
+### 15.7   （89） Stream之消息重复消费
+### 15.8   （90） Stream之group解决消息重复消费
+### 15.9   （91） Stream之消息持久化
 ## 16.spring-cloud Sleuth 分布式请求链路跟踪
-### 16.1  （92） Sleuth是什么
-### 16.2  （93） Sleuth之zipkin搭建安装
-### 16.3  （94） Sleuth链路监控展现
+### 16.1   （92） Sleuth是什么
+### 16.2   （93） Sleuth之zipkin搭建安装
+### 16.3   （94） Sleuth链路监控展现
 ## 17.spring-cloud Alibaba 入门简介
-### 17.1  （95） cloud alibaba简介
+### 17.1   （95） cloud alibaba简介
 ## 18.spring-cloud Alibaba Nacos 服务注册和配置中心
-### 18.1  （96）  Nacos简介和下载
-### 18.2  （97）  Nacos安装
-### 18.3  （98）  Nacos之服务提供者注册
-### 18.4  （99）  Nacos之服务消费者注册和负载
-### 18.5  （100） Nacos服务注册中心对比提升
-### 18.6  （101） Nacos之服务配置中心
-### 18.7  （102） Nacos之命名空间分组和DataID三者关系
-### 18.8  （103） Nacos之DataID配置
-### 18.9  （104） Nacos之Group分组方案
-### 18.10 （105） Nacos之Namespace空间方案
-### 18.11 （106） Nacos之集群架构说明
-### 18.12 （107） Nacos之持久化切换配置
-### 18.13 （108） Nacos之linux版本安装
-### 18.14 （109） Nacos之集群配置上
-### 18.15 （110） Nacos之集群配置下
+### 18.1   （96）  Nacos简介和下载
+### 18.2   （97）  Nacos安装
+### 18.3   （98）  Nacos之服务提供者注册
+### 18.4   （99）  Nacos之服务消费者注册和负载
+### 18.5   （100） Nacos服务注册中心对比提升
+### 18.6   （101） Nacos之服务配置中心
+### 18.7   （102） Nacos之命名空间分组和DataID三者关系
+### 18.8   （103） Nacos之DataID配置
+### 18.9   （104） Nacos之Group分组方案
+### 18.10  （105） Nacos之Namespace空间方案
+### 18.11  （106） Nacos之集群架构说明
+### 18.12  （107） Nacos之持久化切换配置
+### 18.13  （108） Nacos之linux版本安装
+### 18.14  （109） Nacos之集群配置上
+### 18.15  （110） Nacos之集群配置下
 ## 19.spring-cloud Alibaba Sentinel实现熔断与限流
-### 19.1  （111） Sentinel是什么
-### 19.2  （112） Sentinel下载安装运行
-### 19.3  （113） Sentinel初始化监控
-### 19.4  （114） Sentinel流控规则简介
-### 19.5  （115） Sentinel流控-QPS直接失败
-### 19.6  （116） Sentinel流控-线程数直接失败
-### 19.7  （117） Sentinel流控-关联
-### 19.8  （118） Sentinel流控-预热
-### 19.9  （119） Sentinel流控-排队等待
-### 19.10 （120） Sentinel降级简介
-### 19.11 （121） Sentinel降级-RT
-### 19.12 （122） Sentinel降级-异常比例
-### 19.13 （123） Sentinel降级-异常数
-### 19.14 （124） Sentinel热点key 上
-### 19.15 （125） Sentinel热点key 下
-### 19.16 （126） Sentinel系统规则
-### 19.17 （127） SentinelResource配置上
-### 19.18 （128） SentinelResource配置中
-### 19.19 （129） SentinelResource配置下
-### 19.20 （130） Sentinel服务熔断Ribbon环境预说
-### 19.21 （131） Sentinel服务熔断无配置
-### 19.22 （132） Sentinel服务熔断只配置fallback
-### 19.23 （133） Sentinel服务熔断只配置blockHandler
-### 19.24 （134） Sentinel服务熔断配置fallback和blockHandler
-### 19.25 （135） Sentinel服务熔断exceptionsToIgnore
-### 19.26 （136） Sentinel服务熔断OpenFeign
-### 19.27 （137） Sentinel持久化规则
+### 19.1   （111） Sentinel是什么
+### 19.2   （112） Sentinel下载安装运行
+### 19.3   （113） Sentinel初始化监控
+### 19.4   （114） Sentinel流控规则简介
+### 19.5   （115） Sentinel流控-QPS直接失败
+### 19.6   （116） Sentinel流控-线程数直接失败
+### 19.7   （117） Sentinel流控-关联
+### 19.8   （118） Sentinel流控-预热
+### 19.9   （119） Sentinel流控-排队等待
+### 19.10  （120） Sentinel降级简介
+### 19.11  （121） Sentinel降级-RT
+### 19.12  （122） Sentinel降级-异常比例
+### 19.13  （123） Sentinel降级-异常数
+### 19.14  （124） Sentinel热点key 上
+### 19.15  （125） Sentinel热点key 下
+### 19.16  （126） Sentinel系统规则
+### 19.17  （127） SentinelResource配置上
+### 19.18  （128） SentinelResource配置中
+### 19.19  （129） SentinelResource配置下
+### 19.20  （130） Sentinel服务熔断Ribbon环境预说
+### 19.21  （131） Sentinel服务熔断无配置
+### 19.22  （132） Sentinel服务熔断只配置fallback
+### 19.23  （133） Sentinel服务熔断只配置blockHandler
+### 19.24  （134） Sentinel服务熔断配置fallback和blockHandler
+### 19.25  （135） Sentinel服务熔断exceptionsToIgnore
+### 19.26  （136） Sentinel服务熔断OpenFeign
+### 19.27  （137） Sentinel持久化规则
 ## 20.spring-cloud Alibaba seata处理分布式事务
-### 20.1 （138） 分布式事务问题由来
-### 20.2 （139） Seata 术语
-### 20.3 （140） Seata-Server 安装
-### 20.4 （141） Seata业务数据库准备
-### 20.5 （142） Seata之Order-Module配置搭建
-### 20.6 （143） Seata之Order-Module代码上
-### 20.7 （144） Seata之Order-Module代码下
-### 20.8 （145） Seata之Storage-Module说明
-### 20.9 （146） Seata之Account-Module说明
-### 20.10（147） Seata之@GloablTransactional验证
-### 20.11（148） Seata之原理简介
+### 20.1   （138） 分布式事务问题由来
+### 20.2   （139） Seata 术语
+### 20.3   （140） Seata-Server 安装
+### 20.4   （141） Seata业务数据库准备
+### 20.5   （142） Seata之Order-Module配置搭建
+### 20.6   （143） Seata之Order-Module代码上
+### 20.7   （144） Seata之Order-Module代码下
+### 20.8   （145） Seata之Storage-Module说明
+### 20.9   （146） Seata之Account-Module说明
+### 20.10  （147） Seata之@GloablTransactional验证
+### 20.11  （148） Seata之原理简介
 ## 21.spring-cloud Alibaba 大厂面试题第三季
-### 21.1 （149） 雪花算法上
-### 21.2 （150） 雪花算法下
+### 21.1   （149） 雪花算法上
+### 21.2   （150） 雪花算法下
 
 ### FInal.模块介绍
 cloud-api-commons           公共模块
