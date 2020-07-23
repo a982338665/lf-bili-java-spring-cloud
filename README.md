@@ -442,6 +442,16 @@ CAP ：
     2.如何替换默认轮询：
     
 ### 8.4  （39） ribbon负载规则替换
+
+    1.替换负载规则：
+        此自定义配置类不能放在 @ComponentScan所扫描的当前包下及子包下
+        否则自定义的配置类就会被所有Ribbon客户端所共享，达不到特殊化定制目的   
+        所以该目录必须放在启动类上级目录的平级目录下，因为启动类中有这个注解
+    2.具体：
+        添加同级配置类
+        启动类添加注解@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration= MySelfRule.class)
+        测试：http://localhost/consumer/payment/get/31 无规则交替出现 8001,8002
+        
 ### 8.5  （40） ribbon默认负载轮询算法原理
 ### 8.6  （41） RoundRobinRule源码分析
 ### 8.7  （42） ribbon之手写轮询算法
