@@ -12,36 +12,24 @@
 - [1.微服务架构零基础理论入门-小白入门](#1微服务架构零基础理论入门-小白入门)
 - [2.从2.2.X和H版开始说起](#2从22X和H版开始说起)
 - [3.关于cloud各种组件的停更，升级，替换](#3关于cloud各种组件的停更升级替换)
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-* 
-* 4.微服务架构编码构建
-* 5.Eureka服务注册与发现
-* 6.zookeeper服务注册与发现
-* 7.Consul服务注册与发现
-* 8.Ribbon负载均衡与服务调用
-* 9.OpenFeign服务接口调用
-* 10.Hystrix断路由
-* 11.zuul路由网关
-* 12.GateWay新一代网关
-* 13.spring-cloud config 分布式配置中心
-* 14.spring-cloud BUS总线
-* 15.spring-cloud Stream 消息驱动
-* 16.spring-cloud Sleuth 分布式请求链路跟踪
-* 17.spring-cloud Alibaba 入门简介
-* 18.spring-cloud Alibaba Nacos 服务注册和配置中心
-* 19.spring-cloud Alibaba Sentinel实现熔断与限流
-* 20.spring-cloud Alibaba seata处理分布式事务
-* 21.spring-cloud Alibaba 大厂面试题第三季
+- [4.微服务架构编码构建](#4微服务架构编码构建)
+- [5.Eureka服务注册与发现](#5Eureka服务注册与发现)
+- [6.zookeeper服务注册与发现](6zookeeper服务注册与发现)
+- [7.Consul服务注册与发现](#7Consul服务注册与发现)
+- [8.Ribbon负载均衡与服务调用](#8Ribbon负载均衡与服务调用)
+- [9.OpenFeign服务接口调用](#9OpenFeign服务接口调用)
+- [10.Hystrix断路由](#10Hystrix断路由)
+- [11.zuul路由网关](#11zuul路由网关)
+- [12.GateWay新一代网关](#12GateWay新一代网关)
+- [13.spring-cloud config 分布式配置中心](#13spring-cloud-config-分布式配置中心)
+- [14.spring-cloud BUS总线](#14spring-cloud-BUS总线)
+- [15.spring-cloud Stream 消息驱动](#15spring-cloud-Stream-消息驱动)
+- [16.spring-cloud Sleuth 分布式请求链路跟踪](#16spring-cloud-Sleuth-分布式请求链路跟踪)
+- [17.spring-cloud Alibaba 入门简介](#17spring-cloud-Alibaba-入门简介)
+- [18.spring-cloud Alibaba Nacos 服务注册和配置中心](#18spring-cloud-Alibaba-Nacos-服务注册和配置中心)
+- [19.spring-cloud Alibaba Sentinel实现熔断与限流](#19spring-cloud-Alibaba-Sentinel实现熔断与限流)
+- [20.spring-cloud Alibaba seata处理分布式事务](#20spring-cloud-Alibaba-seata处理分布式事务)
+- [21.spring-cloud Alibaba 大厂面试题第三季](#21spring-cloud-Alibaba-大厂面试题第三季)
 
 ## 1.微服务架构零基础理论入门-小白入门
 >二级标题为目录对应的章节 例如 ## 1.  
