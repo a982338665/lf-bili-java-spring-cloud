@@ -429,6 +429,18 @@ CAP ：
         5.post
      
 ### 8.3  （38） ribbon自带的负载规则
+    
+    1.ribbon核心组件IRule：根据特点算法 从服务列表中选取一个要访问的服务
+    2.ribbon自带的负载均衡算法：7种
+        ·import com.netflix.loadbalancer.RoundRobinRule; 【轮询】
+        ·import com.netflix.loadbalancer.RandomRule;    【随机】
+        ·import com.netflix.loadbalancer.RetryRule;     先按照【轮询】的策略获取服务，如果获取服务失败则在指定时间内会进行重试，获取可用的服务
+        ·import com.netflix.loadbalancer.WeightedResponseTimeRule;对【轮询】的拓展，响应速度越快的实例，选择权重越大，越容易被选择
+        ·import com.netflix.loadbalancer.BestAvailableRule; 会先过滤掉由于多次访问故障而处于断路器跳闸状态的服务，然后选择一个并发量最小的服务
+        ·import com.netflix.loadbalancer.AvailabilityFilteringRule; 先过滤掉故障实例，再选择并发较小的实例
+        ·import com.netflix.loadbalancer.ZoneAvoidanceRule;默认规则，符合判断server所在区域的性能和serve的可用性选择服务器
+    2.如何替换默认轮询：
+    
 ### 8.4  （39） ribbon负载规则替换
 ### 8.5  （40） ribbon默认负载轮询算法原理
 ### 8.6  （41） RoundRobinRule源码分析
