@@ -476,6 +476,21 @@ CAP ：
     
 ## 9.OpenFeign服务接口调用
 ### 9.1    （43） OpenFeign是什么
+
+    1.官网：https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/#spring-cloud-openFeign
+    2.github:github.com/spring-cloud/spring-cloud-openfeign
+    2.介绍：
+        Feign是一个申明式webservice客户端。使用Feign能让编写webservice客户端更加简单
+        他的使用方法是定义一个服务接口然后在上面添加注解。feign也支持可拔插式的编码器和解码器。springcloud对feign进行了封装，使其支持spring mvc标准注解
+        和HttpMessageConverters。Feign可以与Eureka和Ribbon组合使用以支持负载均衡
+    3.能做什么：
+        Feign旨在使编写java http客户端变得更容易
+        前面在使用ribbon+RestTemplate时，利用RestTemplat对http请求的封装处理，形成一套模板化的调用方法，但是实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用
+        所以，feign在此基础上，做了进一步封装，由他来帮助我们定义和实现依赖服务接口的定义，在Feign的实现下，我们只需创建一个接口并使用注解的方式来配置他（以前是dao接口上面标准mapper界面，
+        现在是一个微服务上标注一个Feign注解即可），即可完成服务提供方的接口绑定，简化了使用Ribbon时，自动封装服务调用客户端的开发量
+    4.Feign集成Ribbon
+        利用Ribbon维护了Payment的服务列表信息，并且通过轮询实现了客户端的负载均衡。而与Ribbon不同的是，通过Feign只需定义服务绑定接口，且以声明式的方法，优雅简单的实现了服务调用
+    
 ### 9.2    （44） OpenFeign服务调用
 ### 9.3    （45） OpenFeign超时控制
 ### 9.4    （46） OpenFeign日志增强
