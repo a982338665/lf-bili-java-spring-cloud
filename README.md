@@ -460,8 +460,12 @@ CAP ：
         第二次请求：2%2 = 0 取下标为0的服务
         ...
     
-### 8.6  （41） RoundRobinRule源码分析
-### 8.7  （42） ribbon之手写轮询算法
+### 8.6    （41） RoundRobinRule源码分析
+    
+    CAS+自寻锁：尚硅谷Java大厂面试题第二季(java面试必学，周阳主讲)
+    https://www.bilibili.com/video/bv18b411M7xz/?spm_id_from=333.788.b_636f6d6d656e74.19
+    
+### 8.7    （42） ribbon之手写轮询算法
 ## 9.OpenFeign服务接口调用
 ### 9.1    （43） OpenFeign是什么
 ### 9.2    （44） OpenFeign服务调用
