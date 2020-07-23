@@ -409,13 +409,25 @@ CAP ：
             进程内的LB：Ribbon本地负载均衡，在调用微服务接口时，会在注册中心上获取注册信息服务列表之后再缓存到JVM本地，从而在本地实现RPC远程服务调用技术
                 它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址
         3.负载2均衡+restTemplate调用
-            之前写过
+            之前写过:最新版的spring-cloud-starter-netflix-eureka-client包含ribbon
             依次启动 Eurekaa的 7001,7002,8001,8002,80 后访问：http://localhost/consumer/payment/get/31 即可看到
             返回值：交替出现以下两种结果
             {"code":200,"message":"查询成功,serverPort: 8001","data":{"id":31,"serial":"尚硅谷"}}
             {"code":200,"message":"查询成功,serverPort: 8002","data":{"id":31,"serial":"尚硅谷"}}
     
 ### 8.2  （37） ribbon的负载均衡和rest调用
+
+    1.ribbon其实就是一个软负载均衡的客户端组件，他可以和其他所需请求的客户端结合使用，和eureka结合只是其中一种实例
+    2.工作步骤：
+        1.先选择EurekaServer，优先选择同一区域内负载较少的Server
+        2.再根据用户指定的策略，再从server取到的服务注册列表中选择一个地址。其中ribbon提供了多种策略，比如轮询，随机和根据响应时间加权
+    3.restTemplate的使用:
+        1.官网：https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html
+        2.getForObject/getForEntity
+        3.postForObject/postForEntity
+        4.get
+        5.post
+     
 ### 8.3  （38） ribbon自带的负载规则
 ### 8.4  （39） ribbon负载规则替换
 ### 8.5  （40） ribbon默认负载轮询算法原理
