@@ -466,6 +466,14 @@ CAP ：
     https://www.bilibili.com/video/bv18b411M7xz/?spm_id_from=333.788.b_636f6d6d656e74.19
     
 ### 8.7    （42） ribbon之手写轮询算法
+
+    1.原理：JUC （CAS+自旋锁的复习）
+    2.步骤：手写本地负载均衡器
+        1.7001/7002集群启动
+        2.8001/8002微服务改造
+        3.80订单微服务改造
+        
+    
 ## 9.OpenFeign服务接口调用
 ### 9.1    （43） OpenFeign是什么
 ### 9.2    （44） OpenFeign服务调用
