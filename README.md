@@ -452,7 +452,7 @@ CAP ：
         启动类添加注解@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration= MySelfRule.class)
         测试：http://localhost/consumer/payment/get/31 无规则交替出现 8001,8002
         
-### 8.5  （40） ribbon默认负载轮询算法原理
+### 8.5  （40） ribbon默认负载轮询算法原理（3台机器的轮询？？？）
     
     1.负载均衡算法：rest接口第几次请求数 % 服务器集群总数量 = 实际调用服务器位置下标，每次服务重启后，rest接口计数从1开始
         服务数量：2台
