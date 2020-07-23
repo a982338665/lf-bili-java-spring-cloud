@@ -492,6 +492,9 @@ CAP ：
         利用Ribbon维护了Payment的服务列表信息，并且通过轮询实现了客户端的负载均衡。而与Ribbon不同的是，通过Feign只需定义服务绑定接口，且以声明式的方法，优雅简单的实现了服务调用
     
 ### 9.2    （44） OpenFeign服务调用
+
+    1.注解+接口
+    2.新建 feign-cloud-consumer-order80
 ### 9.3    （45） OpenFeign超时控制
 ### 9.4    （46） OpenFeign日志增强
 ## 10.Hystrix断路由
