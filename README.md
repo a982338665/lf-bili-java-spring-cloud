@@ -597,6 +597,10 @@ CAP ：
             或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间，不必要的占用，从而避免了故障级联导致的雪崩
         
 ### 10.2   （48） Hystrix停更进维
+
+    1.github：https://github.com/Netflix/Hystrix/wiki
+    2.github首页：Hystrix is no longer in active development, and is currently in maintenance mode.
+    
 ### 10.3   （49） Hystrix服务降级熔断限流概念初讲
 ### 10.4   （50） Hystrix支付微服务构建
 ### 10.5   （51） Jmeter高并发压测后卡顿
