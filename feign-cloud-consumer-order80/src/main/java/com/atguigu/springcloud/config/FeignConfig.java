@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @auther zzyy
  * @create 2020-02-20 9:40
+ * 配置日志bean
  */
 @Configuration
 public class FeignConfig

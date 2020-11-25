@@ -546,11 +546,35 @@ CAP ：
         4.由于openFeign也依赖ribbon，其超时控制也由ribbon控制，所以若有些业务时间较长，超过了超时控制的默认时间，则需要单独设置
             该设置针对于微服务，而非某个特定的接口
             修改方式：在yml文件中设置超时配置，然后通过测试不会再报错
-     
-            
-    
     
 ### 9.4    （46） OpenFeign日志增强
+
+    1.openFeign的日志打印功能：
+        可以通过配置调整日志级别，从而了解feign中http的细节输出
+    2.日志级别：
+        1.NONE：默认的不显示任何日志
+        2.BASIC：仅记录请求方法，URL，响应状态码及执行时间
+        3.HEADERS：除了BASIC中定义的信息之外，还有请求和响应的头信息
+        4.FULL：除了HEADERS中定义的信息之外，还有请求和响应的正文及元数据
+    3.使用：
+        1.配置日志Bean：
+            新建配置文件：FeignConfig，注入log的bean
+        2.yml文件中开启
+        3.启动访问：http://localhost/consumer/payment/get/31
+        4.查看日志：
+             [PaymentFeignService#getPaymentById] ---> GET http://CLOUD-PAYMENT-SERVICE/payment/get/31 HTTP/1.1
+             [PaymentFeignService#getPaymentById] ---> END HTTP (0-byte body)
+             ...
+             [PaymentFeignService#getPaymentById] <--- HTTP/1.1 200 (493ms)
+             [PaymentFeignService#getPaymentById] connection: keep-alive
+             [PaymentFeignService#getPaymentById] content-type: application/json
+             [PaymentFeignService#getPaymentById] date: Wed, 25 Nov 2020 06:34:38 GMT
+             [PaymentFeignService#getPaymentById] keep-alive: timeout=60
+             [PaymentFeignService#getPaymentById] transfer-encoding: chunked
+             [PaymentFeignService#getPaymentById] 
+             [PaymentFeignService#getPaymentById] {"code":200,"message":"查询成功,serverPort: 8001","data":{"id":31,"serial":"尚硅谷"}}
+             [PaymentFeignService#getPaymentById] <--- END HTTP (92-byte body)
+    
 ## 10.Hystrix断路由
 ### 10.1   （47） Hystrix是什么
 ### 10.2   （48） Hystrix停更进维
