@@ -543,7 +543,11 @@ CAP ：
                     Read timed out executing GET http://CLOUD-PAYMENT-SERVICE/payment/feign/timeout
                     feign.RetryableException: Read timed out executing GET http://CLOUD-PAYMENT-SERVICE/payment/feign/timeout
                         at feign.FeignException.errorExecuting(FeignException.java:213)
-        4.
+        4.由于openFeign也依赖ribbon，其超时控制也由ribbon控制，所以若有些业务时间较长，超过了超时控制的默认时间，则需要单独设置
+            该设置针对于微服务，而非某个特定的接口
+            修改方式：在yml文件中设置超时配置，然后通过测试不会再报错
+     
+            
     
     
 ### 9.4    （46） OpenFeign日志增强
