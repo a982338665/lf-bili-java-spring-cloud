@@ -6,7 +6,11 @@
 >初级：5-9
 >中级：10-16
 >高级：17-21
-
+>host文件修改：
+    C:\Windows\System32\drivers\etc\host
+       
+    
+>
 ## 目录：
 
 - [1.微服务架构零基础理论入门-小白入门](#1微服务架构零基础理论入门-小白入门)
@@ -201,14 +205,14 @@
 ### 5.6  （20） Eureka集群环境构建
 
     C:\Windows\System32\drivers\etc\host 文件添加映射关系
-        127.0.0.1 eureka7001.com
-        127.0.0.1 eureka7002.com
+        127.0.0.1 localhost
+        127.0.0.1 localhost
         127.0.0.1 eureka7003.com
     相互注册：7001注册7002 ，7002注册7001
     
 ### 5.7  （21） 订单支付两微服务注册进Eureka集群
 
-    defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+    defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
 
 ### 5.8  （22） 支付微服务集群配置
     
@@ -375,6 +379,11 @@ CAP ：
     C：Consistency 强一致性
     A：Avaliability 可用性
     p：Partition tolerance  分布式的分区容错性
+        一个分布式系统里面，节点组成的网络本来应该是连通的。然而可能因为一些故障，使得有些节点之间不连通了，整个网络就分成了几块区域。数据就散布在了这些不连通的区域中。这就叫分区。
+        当你一个数据项只在一个节点中保存，那么分区出现后，和这个节点不连通的部分就访问不到这个数据了。这时分区就是无法容忍的。
+        提高分区容忍性的办法就是一个数据项复制到多个节点上，那么出现分区之后，这一数据项就可能分布到各个区里。容忍性就提高了。
+        然而，要把数据复制到多个节点，就会带来一致性的问题，就是多个节点上面的数据可能是不一致的。要保证一致，每次写操作就都要等待全部节点写成功，而这等待又会带来可用性的问题。
+        总的来说就是，数据存在的节点越多，分区容忍性越高，但要复制更新的数据就越多，一致性就越难保证。为了保证一致性，更新所有节点数据所需要的时间就越长，可用性就会降低。
     由于项目本身就是分布式，所以要么AP，要么CP
     CAP理论关注的粒度是数据，而不是整体系统设计的
     CAP经典图：
@@ -479,7 +488,7 @@ CAP ：
 
     1.官网：https://cloud.spring.io/spring-cloud-static/Hoxton.SR1/reference/htmlsingle/#spring-cloud-openFeign
     2.github:github.com/spring-cloud/spring-cloud-openfeign
-    2.介绍：
+    2.介绍：-以下Feign指的是openFeign
         Feign是一个申明式webservice客户端。使用Feign能让编写webservice客户端更加简单
         他的使用方法是定义一个服务接口然后在上面添加注解。feign也支持可拔插式的编码器和解码器。springcloud对feign进行了封装，使其支持spring mvc标准注解
         和HttpMessageConverters。Feign可以与Eureka和Ribbon组合使用以支持负载均衡
@@ -494,8 +503,33 @@ CAP ：
 ### 9.2    （44） OpenFeign服务调用
 
     1.注解+接口
-    2.新建 feign-cloud-consumer-order80
+    2.新建 feign-cloud-consumer-order80，添加依赖+代码
+        pom：openFeign
+        yml：配置，从哪个eureka中获取集群的地址
+        主启动类：添加注解@EnableFeignClients
+        业务类：新建service接口+添加注解,新建controller接口，调用service接口
+            @Component
+            @FeignClient(value = "CLOUD-PAYMENT-SERVICE")//服务提供者的名称
+            public interface PaymentFeignService
+            {
+                @GetMapping(value = "/payment/get/{id}")
+                public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
+            
+                @GetMapping(value = "/payment/feign/timeout")
+                public String paymentFeignTimeout();
+            }
+        测试:
+            1.启动eureka集群 7001 7002
+            2.启动提供者 8001 8002
+            3.启动openFeign 80
+            4.http://localhost/consumer/payment/get/31
+            5.Feign自带负载均衡配置项
+    
 ### 9.3    （45） OpenFeign超时控制
+    
+    1.
+    
+    
 ### 9.4    （46） OpenFeign日志增强
 ## 10.Hystrix断路由
 ### 10.1   （47） Hystrix是什么
