@@ -527,7 +527,23 @@ CAP ：
     
 ### 9.3    （45） OpenFeign超时控制
     
-    1.
+    1.超时设置，故意设置超时演示出错情况
+        1.服务提供方【8001】故意写暂停程序：paymentFeignTimeout，睡眠3秒
+        2.服务消费方【80】添加超时方法，默认1秒超时
+        3.依次启动：
+            eureka服务集群：7001,7002
+            服务提供方：8001
+            服务调用方：openFiegn 80
+        3.测试：
+            1.直接访问8001端口：http://localhost:8001/payment/feign/timeout
+                等待3秒后，出现执行结果
+            2.通过feign去访问服务提供者：
+                http://localhost/consumer/payment/feign/timeout
+                由于走负载均衡，其默认1秒，所以超过1秒报错，而不是正确显示执行结果
+                    Read timed out executing GET http://CLOUD-PAYMENT-SERVICE/payment/feign/timeout
+                    feign.RetryableException: Read timed out executing GET http://CLOUD-PAYMENT-SERVICE/payment/feign/timeout
+                        at feign.FeignException.errorExecuting(FeignException.java:213)
+        4.
     
     
 ### 9.4    （46） OpenFeign日志增强

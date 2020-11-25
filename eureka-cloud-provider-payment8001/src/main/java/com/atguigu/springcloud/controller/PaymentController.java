@@ -72,7 +72,7 @@ public class PaymentController {
     {
         return serverPort;
     }
-   /*
+
 
     @GetMapping(value = "/payment/feign/timeout")
     public String paymentFeignTimeout()
@@ -81,6 +81,9 @@ public class PaymentController {
         try { TimeUnit.SECONDS.sleep(3); } catch (InterruptedException e) { e.printStackTrace(); }
         return serverPort;
     }
+
+
+   /*
 
     @GetMapping("/payment/zipkin")
     public String paymentZipkin()
