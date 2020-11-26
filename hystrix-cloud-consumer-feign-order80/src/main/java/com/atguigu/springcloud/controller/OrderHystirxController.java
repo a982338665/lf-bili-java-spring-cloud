@@ -43,7 +43,7 @@ public class OrderHystirxController
     //@HystrixCommand
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id)
     {
-//        int age = 10/0;
+        int age = 10/0;
         String result = paymentHystrixService.paymentInfo_TimeOut(id);
         return result;
     }
