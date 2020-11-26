@@ -743,6 +743,15 @@ CAP ：
         在springcloud框架里，熔断机制通过hytstrix实现，他会监控微服务间的调用情况，当失败的调用达到某一个阀值，缺省是5秒内调用20次调用失败，就会启动熔断机制，注解为@HystrixCommand
     
 ### 10.13  （59） Hystrix服务熔断案例(上)
+    
+    0.hutool.cn ===>  工具包的使用
+    1.操作：
+        修改8001：-> PaymentService
+    2.默认属性：HystrixCommandProperties
+        //表示在10秒内，10次请求中，超过60%是失败的（即6次以上），则触发断路器，待服务器恢复后，关闭断路器，重新连接使用
+        //其他参数以官网为准
+        //详细的默认参数查看类 HystrixCommandProperties
+        
 ### 10.14  （60） Hystrix服务熔断案例(下)
 ### 10.15  （61） Hystrix服务熔断总结
 ### 10.16  （62） Hystrix工程流程，最后总结
