@@ -8,7 +8,7 @@
 >高级：17-21
 >host文件修改：
     C:\Windows\System32\drivers\etc\host
-       
+>Hystrix：https://github.com/Netflix/Hystrix/wiki
     
 >
 ## 目录：
@@ -673,6 +673,24 @@ CAP ：
             3.对方服务（8001）没问题，调用者（80）故障（80的等待回复的时间小于8001服务处理的时间），自己处理服务降级
         
 ### 10.8   （54） Hystrix服务降级支付侧fallback
+
+    1.降级方式：查看官网
+        注解方式替代编码
+    2.分析：
+        8001自身问题：
+            设置自身调用超时时间的峰值，峰值内可以正常运行，超过了需要有兜底的方法，做服务降级，保证服务其他接口能正常使用
+            修改8001，添加注解
+                @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
+                            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+                })
+                一旦调用服务方法失败并抛出错误信息后，会自动调用fallbackMethod申明的方法
+            主启动类，添加注解@EnableCircuitBreaker
+    3.测试：
+        启动7001,8001
+        访问：http://localhost:8001/payment/hystrix/timeout/31
+        返回：线程池: HystrixTimer-1 8001系统繁忙或者运行报错，请稍后再试,id: 31 o(╥﹏╥)o
+        说明：断路器起作用了，在服务提供端，接口时间超过了3秒，直接调用断路器中申明的方法并返回
+        
 ### 10.9   （55） Hystrix服务降级订单侧fallback
 ### 10.10  （56） Hystrix全局服务降级DefaultProperties
 ### 10.11  （57） Hystrix通配服务降级FeignFallback

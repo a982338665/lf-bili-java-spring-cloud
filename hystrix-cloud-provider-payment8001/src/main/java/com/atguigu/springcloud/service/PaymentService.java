@@ -25,12 +25,20 @@ public class PaymentService {
         return "线程池:  " + Thread.currentThread().getName() + "  paymentInfo_OK,id:  " + id + "\t" + "O(∩_∩)O哈哈~";
     }
 
-//    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
-//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
-//    })
+    /**
+     * fallbackMethod   接口出问题后调用的方法
+     * HystrixProperty  设置属性
+     * execution.isolation.thread.timeoutInMilliseconds 设置本接口的超时时间
+     * @param id
+     * @return
+     */
+    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+    })
     public String paymentInfo_TimeOut(Integer id) {
         //int age = 10/0;
-        int timeOut = 3;
+        //业务改为5秒，造成超时问题
+        int timeOut = 5;
         try {
             TimeUnit.SECONDS.sleep(timeOut);
         } catch (InterruptedException e) {
@@ -39,9 +47,14 @@ public class PaymentService {
         return "线程池:  " + Thread.currentThread().getName() + " id:  " + id + "\t" + "O(∩_∩)O哈哈~" + "  耗时(秒): " + timeOut;
     }
 
-//    public String paymentInfo_TimeOutHandler(Integer id) {
-//        return "线程池:  " + Thread.currentThread().getName() + "  8001系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
-//    }
+    /**
+     * 调用接口失败后的处理方法
+     * @param id
+     * @return
+     */
+    public String paymentInfo_TimeOutHandler(Integer id) {
+        return "线程池:  " + Thread.currentThread().getName() + "  8001系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
+    }
 //
 //    //=====服务熔断
 //    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
