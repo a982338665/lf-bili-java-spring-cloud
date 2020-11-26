@@ -786,6 +786,23 @@ CAP ：
     2.工作流程：查看github
     
 ### 10.17  （63） Hystrix图形化 DashBoard搭建
+    
+    1.新建模块仪表盘9001:hystrix-cloud-consumer-dashboard9001
+    2.依赖
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+    3.注解：@EnableHystrixDashboard
+    4.所有的Provider微服务提供类 8001,8002,8003都需要监控依赖配置
+        provider中需要引入依赖
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+    5.启动访问：
+        localhost:9001/hystrix
+    
 ### 10.18  （64） Hystrix图形化 DashBoard监控实战
 ## 11.zuul路由网关
 ### 11.1   （65） GateWay和Zuul课程说明
