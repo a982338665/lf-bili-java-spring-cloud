@@ -618,6 +618,22 @@ CAP ：
             1.秒杀高并发等操作，严禁一窝蜂过来拥挤，每秒N个，有序进行
     
 ### 10.4   （50） Hystrix支付微服务构建
+
+    1.恢复7001为单机版
+    2.新建服务提供者8001：hystrix-cloud-provider-payment8001
+        1.pom：hystrix
+        2.yml：无需额外配置
+        3.代码
+            启动类：
+            service
+            controller
+    3.初步测试：
+        启动7001
+        启动8001
+        访问：
+            成功：http://localhost:8001/payment/hystrix/ok/31
+            等待3秒：http://localhost:8001/payment/hystrix/timeout/31
+    
 ### 10.5   （51） Jmeter高并发压测后卡顿
 ### 10.6   （52） 订单微服务调用支付服务出现卡顿
 ### 10.7   （53） 降级容错解决的维度要求
