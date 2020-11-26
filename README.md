@@ -646,6 +646,22 @@ CAP ：
                 资源占用厉害无法去分解精力处理其他接口
 
 ### 10.6   （52） 订单微服务调用支付服务出现卡顿
+
+    1.新建80消费者:hystrix-cloud-consumer-feign-order80
+        pom:
+        yml
+        启动类：@EnableFeignClients
+    2.启动测试：消费者是否可以正常条用服务提供者
+        启动7001,8001
+        正常：http://localhost/consumer/payment/hystrix/ok/31
+        压测接口：http://localhost:8001/payment/hystrix/timeout/31
+            压测过程中，访问正常接口，会出现延迟，或者超时报错
+        所以为了消费端能正常工作，服务端需要做熔断降级
+    3.故障现象及导致原因：
+        8001同一层次的其它接口服务被困死，因为tomcat线程池里面的工作线程已经被挤占完毕
+        所以80在此时调用8001，客户端响应缓慢
+        正因为有此故障，才会有 容错，降级，限流
+    
 ### 10.7   （53） 降级容错解决的维度要求
 ### 10.8   （54） Hystrix服务降级支付侧fallback
 ### 10.9   （55） Hystrix服务降级订单侧fallback
