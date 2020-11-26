@@ -804,6 +804,39 @@ CAP ：
         localhost:9001/hystrix
     
 ### 10.18  （64） Hystrix图形化 DashBoard监控实战
+
+    1.通过在9001服务界面上填写服务地址，来监控服务
+    2.修改8001以支持图形化：
+        1.pom中必须有：--图形化标配
+              <dependency>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-starter-web</artifactId>
+              </dependency>
+              <dependency>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-starter-actuator</artifactId>
+              </dependency>
+        2.启动类中加方法：注入bean
+        3.测试：
+            启动7001,8001,9001
+            1.访问：http://localhost:9001/hystrix
+                地址栏输入：http://localhost:8001/hystrix.stream
+                    Delay: 2000 
+                    Title: T3
+                先不点击 Monitor Stream
+            2.访问：
+                正确的一次：http://localhost:8001/payment/circuit/31
+                错误的一次：http://localhost:8001/payment/circuit/-31
+                然后多次访问以上地址
+            3.点击1中的Monitor Stream按钮，进入监控
+            4.看图：-- 具体看图片 64-i.jpg
+                7色：Success | Short-Circuited | Bad Request | Timeout | Rejected | Failure | Error %
+                1圈:健康度：绿>黄>橙>红     流量越大，圈越大，所以通过圆的大小就能快速在大量实例中发现故障实例和高压实例
+                1线：记录两分钟内流量的相对变化 ，用来观察流量的上升下级趋势
+            
+        
+        
+        
 ## 11.zuul路由网关
 ### 11.1   （65） GateWay和Zuul课程说明
 ## 12.GateWay新一代网关
