@@ -2,16 +2,6 @@ server:
   port: 7001
 
 ####################单机配置######################################
-#eureka:
-#  instance:
-#    hostname: localhost #eureka服务端的实例名称
-#  client:
-#    register-with-eureka: false     #false表示不向注册中心注册自己。
-#    fetch-registry: false     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
-#    service-url:
-#      #单机就是7001自己
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-#####################集群配置#####################################
 eureka:
   instance:
     hostname: localhost #eureka服务端的实例名称
@@ -19,9 +9,19 @@ eureka:
     register-with-eureka: false     #false表示不向注册中心注册自己。
     fetch-registry: false     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
     service-url:
-      #集群指向其它eureka
-      defaultZone: http://localhost:7002/eureka/
-      server:
+      #单机就是7001自己
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#####################集群配置#####################################
+#eureka:
+#  instance:
+#    hostname: localhost #eureka服务端的实例名称
+#  client:
+#    register-with-eureka: false     #false表示不向注册中心注册自己。
+#    fetch-registry: false     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+#    service-url:
+#      #集群指向其它eureka
+#      defaultZone: http://localhost:7002/eureka/
+#      server:
         #关闭自我保护机制，保证不可用服务被及时踢除
 #        enable-self-preservation: false
         #默认时间是90秒，现在改为2秒
