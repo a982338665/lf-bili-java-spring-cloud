@@ -718,6 +718,23 @@ CAP ：
     3.测试，同55
     
 ### 10.11  （57） Hystrix通配服务降级FeignFallback
+    
+    1.80服务，统一服务降级，抽取
+    2.为Feign客户端定义的接口 添加一个服务降级处理的实现类即可实现解耦
+    3.未来面对的异常：
+        ·运行
+        ·超时
+        ·宕机
+    5.通过service实现类，一次性解耦降级方法PaymentFallbackService
+    6.测试：
+        启动7001
+        启动8001
+        启动80
+        测试访问80：http://localhost/consumer/payment/hystrix/ok/31 正常返回
+        关闭8001：继续访问 http://localhost/consumer/payment/hystrix/ok/31 返回错误
+            -----PaymentFallbackService fall back-paymentInfo_OK ,o(╥﹏╥)o   表示解耦成功
+            此时provider服务宕机，而客户端不会再去等待，而是做了服务降级处理，返回提示信息，防止连锁效应，耗死消费者服务器
+    
 ### 10.12  （58） Hystrix服务熔断理论
 ### 10.13  （59） Hystrix服务熔断案例(上)
 ### 10.14  （60） Hystrix服务熔断案例(下)
