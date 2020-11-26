@@ -36,7 +36,7 @@ public class PaymentService {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
     })
     public String paymentInfo_TimeOut(Integer id) {
-        //int age = 10/0;
+        int age = 10/0;
         //业务改为5秒，造成超时问题
         int timeOut = 5;
         try {
