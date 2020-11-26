@@ -753,6 +753,16 @@ CAP ：
         //详细的默认参数查看类 HystrixCommandProperties
         
 ### 10.14  （60） Hystrix服务熔断案例(下)
+    
+    1.启动7001,8001
+    2.测试：
+        负数：断路由 http://localhost:8001/payment/circuit/-31
+            id 不能负数，请稍后再试，/(ㄒoㄒ)/~~ id: -31
+        正数：正常访问 http://localhost:8001/payment/circuit/31
+    3.10秒内频繁访问 http://localhost:8001/payment/circuit/-31
+      多次造成断路由，可能会进行服务熔断，此时再去访问正确的路径  http://localhost:8001/payment/circuit/31，仍会报错
+      直到隔一段时间后，再次恢复正确访问
+    
 ### 10.15  （61） Hystrix服务熔断总结
 ### 10.16  （62） Hystrix工程流程，最后总结
 ### 10.17  （63） Hystrix图形化 DashBoard搭建
