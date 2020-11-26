@@ -633,8 +633,18 @@ CAP ：
         访问：
             成功：http://localhost:8001/payment/hystrix/ok/31
             等待3秒：http://localhost:8001/payment/hystrix/timeout/31
+    4.以上为基础，从正确---错误---降级熔断---恢复
     
 ### 10.5   （51） Jmeter高并发压测后卡顿
+
+    1.高并发测试：
+        1.上述可在非高并发下正常使用
+        2.jmeter测试：
+            1.20000并发压测8001，20000请求都去访问【超时接口】:http://localhost:8001/payment/hystrix/timeout/31
+            2.然后在浏览器访问正常接口：http://localhost:8001/payment/hystrix/ok/31 会发现正常接口返回也开始不及时了，有延迟
+            3.为什么两个接口最后都会卡死？
+                资源占用厉害无法去分解精力处理其他接口
+
 ### 10.6   （52） 订单微服务调用支付服务出现卡顿
 ### 10.7   （53） 降级容错解决的维度要求
 ### 10.8   （54） Hystrix服务降级支付侧fallback
