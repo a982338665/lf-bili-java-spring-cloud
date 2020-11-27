@@ -833,12 +833,15 @@ CAP ：
                 7色：Success | Short-Circuited | Bad Request | Timeout | Rejected | Failure | Error %
                 1圈:健康度：绿>黄>橙>红     流量越大，圈越大，所以通过圆的大小就能快速在大量实例中发现故障实例和高压实例
                 1线：记录两分钟内流量的相对变化 ，用来观察流量的上升下级趋势
-            
-        
-        
         
 ## 11.zuul路由网关
 ### 11.1   （65） GateWay和Zuul课程说明
+    
+    1.所有微服务都应该有服务网关，来对服务进行日志记录，限流，鉴权，安全架构等工作，类似于医院的分诊台
+    2.zuul网关由于内部发生重大分歧，暂时弃用
+        zuul原计划生成zuul2，其核心人员跳槽，zuul生成zuul2的分歧较大。Netflix自研
+    3.主要内容 gateway-新一代网关：用到了netty，spring5.0后的新特性等,spring社区等不及Netflix自研
+    
 ## 12.GateWay新一代网关
 ### 12.1   （66） GateWay是什么
 ### 12.2   （67） GateWay非阻塞异步模型
