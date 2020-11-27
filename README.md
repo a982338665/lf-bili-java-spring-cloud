@@ -844,6 +844,51 @@ CAP ：
     
 ## 12.GateWay新一代网关
 ### 12.1   （66） GateWay是什么
+
+    1.为什么选择GateWay？
+        ·Netflix不靠谱，zuul2.0迟迟不发布，而gateway是springcloud团队研发的，使用便捷
+        ·gateway是基于异步非阻塞模型开发的，性能无需担忧
+        ·gateway的特性：
+            1.基于spring framework 5，Project Reactor和SpringBoot2.0 进行构建
+            2.动态路由，能够匹配任何请求属性
+            3.可以对路由指定Predicate（断言）和Filter（过滤）
+            4.集成hystrix的断路由功能
+            5.集成spring cloud的服务发现功能
+            6.易于编写的Predicate（断言）和Filter（过滤）
+            7.请求限流功能
+            8.支持路径重写
+    2.zuul和gateway的区别？
+        ***** 在SpringCloud Finchley 正式版之前，springcloud推荐的网关是NetFlix提供的zuul*****
+        1.zuul 1.x，是一个基于阻塞I/O的API GateWay
+        2.zuul 1.x 是基于servlet2.5使用阻塞架构他不支持任何长连接（如Websocket），Zuul的设计模式和nginx较像，每次I/O
+            操作都是从工作线程中选择一个执行，请求线程被阻塞到工作线程完成，但是差别是，nginx使用c++实现，zuul使用java实现
+            而jvm本身有第一次加载慢的情况，使得zuul的性能相对较差
+        3.zuul2.x的理念更先进，基于netty的非阻塞和支持长连接，但是springcloud目前还未整合，zuul2.x的性能叫zuul1.x的性能有较大提升
+        4.在性能方面，根据官方提供的基准测试，gateway的RPS（每秒请求数）是zuul的1.6倍
+        5.gateway建立在spring framework 5 ，project Reactor 和springboot2 之上，使用非阻塞API
+        6.gateway还支持websocket，并与spring紧密集成 拥有更好的开发体验
+    3.zuul1.x的模型：
+        springcloud所集成的zuul版本，采用的是tomcat容器，使用的是传统的Servlet IO处理模型
+            servlet的生命周期，servlet由servlet container 进行生命周期管理
+            1.container 启动时构造 servlet对象并调用servlet init()进行初始化
+            2.container 运行时接收请求，并为每个请求分配一个线程（一般从线程池中获取空线程），然后调用service（）
+            3.container 关闭时调用servlet destory()销毁servlet  
+        上述模式的缺点：
+            1.servlet是一个简单的网络IO模型，当请求进入servlet container时，servlet container就会为其绑定一个线程，在并发不高的场景下，这种模式是适用的
+                但是，在高并发场景下（jmeter），线程数量就会上涨，而线程资源代价是昂贵的，（上下文切换，内存消耗大），严重影响请求的处理时间，在一些简单业务场景下
+                不希望为每个request分配一个线程，只需要1个或几个线程就能应对极大的并发请求，这种场景下servelt模型没有优势
+            2.所以zuul1.x是基于servlet之上的一个阻塞式处理模型，即spring实现了处理所有request请求的一个servlet（DispatcherServlet）并由该servlet阻塞式处理请求，
+                所以zuul1.x无法摆脱servlet的弊端
+    4.gateway模型：
+        WebFlux：
+            1.官网：https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html
+            2.说明：
+                传统的web框架，例如 struct2，springmvc，都是基于servlet api与servlet容器基础上运行的【servlet2.5】
+                但是
+                在servlet3.1之后有了异步非阻塞的支持，而webflux是一个典型的异步非阻塞框架，他的核心是基于Reactor的相关api实现的。相对于传统的web框架来说，他可以运行在诸如
+                netty，Undertow及支持servlet3.1的容器上，非阻塞式+ 函数式编程（spring 5必须使用java8）
+                Spring WebFlux是spring 5.0引入的新的响应式框架，区别于springmvc，他不需要依赖Servlet api，他是完全异步非阻塞的，并且基于Reactor来实现响应式流规范  
+                
 ### 12.2   （67） GateWay非阻塞异步模型
 ### 12.3   （68） GateWay工作流程
 ### 12.4   （69） GateWay9527搭建
