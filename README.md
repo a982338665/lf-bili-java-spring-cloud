@@ -906,6 +906,11 @@ CAP ：
             目标uri就能实现一个具体的路由了
     
 ### 12.4   （69） GateWay9527搭建
+
+    1.pom
+    2.yml:网关也是微服务，需要注册进注册中心
+    3.启动类：@EnableEurekaClient
+
 ### 12.5   （60） GateWay配置路由的两种方式
 ### 12.6   （71） GateWay配置动态路由
 ### 12.7   （72） GateWay常用的Predicate
