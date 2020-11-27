@@ -13,6 +13,19 @@
 
 
     <dependencies>
+
+
+        <!--web-->
+        <!--网关服务，不能有此依赖，会报错，提醒去除===========================================================================-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--        </dependency>-->
+        <!--===========================================================================-->
         <!--gateway-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

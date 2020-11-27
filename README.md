@@ -910,7 +910,21 @@ CAP ：
     1.pom
     2.yml:网关也是微服务，需要注册进注册中心
     3.启动类：@EnableEurekaClient
-
+    
+    4.选择路由：eureka-cloud-provider-payment8001查看controller路由：get   lb
+        目前不想暴露8001端口，所以在外面套一层9527
+    5.修改9527的yml配置：添加转发配置
+    6.测试：
+        启动7001,8001,9527 [eureka-cloud-provider-payment8001]
+        访问说明：
+            添加网关之前
+                http://localhost:8001/payment/lb
+                http://localhost:8001/payment/get/31
+            添加网关之后
+                http://localhost:9527/payment/lb
+                http://localhost:9527/payment/get/31
+        访问结果：都能正常访问，接下来就是隐藏原来端口了  
+                
 ### 12.5   （60） GateWay配置路由的两种方式
 ### 12.6   （71） GateWay配置动态路由
 ### 12.7   （72） GateWay常用的Predicate
