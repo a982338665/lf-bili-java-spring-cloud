@@ -994,9 +994,48 @@ CAP ：
         5.将配置信息以rest接口的形式暴露：post，curl命令刷新即可
     6.与github整合配置：
         由于springcloud config 默认使用git来存储配置文件（其他方式svn，本地文件），但最推荐的还是git，而且使用http、https访问的形式
-        
     
 ### 13.2   （75） Config分布式配置 总控中心搭建
+
+    1.使用步骤：
+        0.视屏中的github地址：zzyybs/springcloud=config.git
+        1.用自己的账号在github上新建一个名为config-spring-cloud20201130的新仓库
+        2.获取仓库地址
+        3.检出该仓库:D:\git-20200518\config-spring-cloud20201130
+        4.在该仓库下新建yml
+            test，prod，dev等
+            表示多个环境的配置文件，保存格式必须为utf-8
+            git操作，commit ，add ，push
+        5.新建模块：config-spring-cloud-center3344
+        6.测试：是否能够正常获取github上的数据内容
+            依次启动7001,3344
+            localhost:3344/master/config-dev.yml 【主分支名称被修改，所以会失败】
+            localhost:3344/main/config-dev.yml 【现今主分支名为 main】
+        7.启动报错问题：auth fail 
+            解决01：使用http/https的git地址，在配置文件中加入账号密码
+                git:
+                  uri: git@github.com:a982338665/config-spring-cloud20201130.git #GitHub上面的git仓库名字
+                  search-paths:
+                    - config-spring-cloud20201130
+                  pawwword:XXX
+                  username:XXX
+        8.访问路径的配置规则： http请求地址和资源文件映射如下: 
+            /{application}/{profile}[/{label}]
+            /{application}-{profile}.yml
+            /{label}/{application}-{profile}.yml
+            /{application}-{profile}.properties
+            /{label}/{application}-{profile}.properties
+            #{application}映射客户端的"spring.application.name"
+            #{profile}映射客户端的"spring.profiles.active"（逗号分隔列表）
+            示例：
+                http://localhost:3344/cloud-config-center/dev/main
+                    {"name":"cloud-config-center","profiles":["dev"],"label":"main","version":"dd0c22cba896ae0cf6180a875c08dd73282611fb","state":null,"propertySources":[]}
+                http://localhost:3344/main/config-dev.yml
+                    config:
+                      info: master branch,springcloud-config/config-dev.yml version=7
+                http://localhost:3344/config/dev/main
+                    {"name":"config","profiles":["dev"],"label":"main","version":"dd0c22cba896ae0cf6180a875c08dd73282611fb","state":null,"propertySources":[{"name":"https://github.com/a982338665/config-spring-cloud20201130.git/config-dev.yml","source":{"config.info":"master branch,springcloud-config/config-dev.yml version=7"}}]}
+    
 ### 13.3   （76） Config客户端配置与测试
 ### 13.4   （77） Config动态刷新之手动版
 ## 14.spring-cloud BUS总线

@@ -22,6 +22,7 @@
         <module>hystrix-cloud-consumer-feign-order80</module>
         <module>hystrix-cloud-consumer-dashboard9001</module>
         <module>gateway-cloud-gateway9527</module>
+        <module>config-spring-cloud-center3344</module>
     </modules>
     <packaging>pom</packaging>
 
