@@ -925,7 +925,16 @@ CAP ：
                 http://localhost:9527/payment/get/31
         访问结果：都能正常访问，接下来就是隐藏原来端口了  
                 
-### 12.5   （60） GateWay配置路由的两种方式
+### 12.5   （60） GateWay配置路由的两种方式：可混用
+
+    1.yml中进行配置：见【59】
+    2.代码编辑：代码中注入RouteLocator的Bean-GateWayConfig
+        1.要求：通过9527网关访问到外网的百度新闻网址
+        2.取消yml配置，进行编码
+    3.测试：
+        http://localhost:9527/guonei  会跳转到百度新闻
+        http://localhost:9527/guoji   会跳转到百度新闻
+    
 ### 12.6   （71） GateWay配置动态路由
 ### 12.7   （72） GateWay常用的Predicate
 ### 12.8   （73） GateWay的Filter
