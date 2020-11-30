@@ -46,8 +46,13 @@ spring:
           uri: lb://cloud-payment-service #匹配后提供服务的路由地址
           predicates:
             - Path=/payment/lb/**         # 断言，路径相匹配的进行路由
-            #- After=2020-02-21T15:51:37.485+08:00[Asia/Shanghai]
-            #- Cookie=username,zzyy
-            #- Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性并且值为整数的正则表达式
-
+            #- After=2020-02-21T15:51:37.485+08:00[Asia/Shanghai] # 此配置从2020-02-21后生效，需求-例如在某个时间暴露接口地址
+            #- Before= # 时间级别 - 在时间前有效
+            #- Between= # 时间级别 -- 在范围内有效
+            #- Cookie=[username,ch.p] # ch.p表示正则表达式，路由规则会通过获取对应的cookie name值，正则表达式的值去匹配，若匹配上就会执行路由，没有配上则不执行
+            #- Cookie=username,zzyy # username=zzyy，正则表达式的值去匹配，若匹配上就会执行路由，没有配上则不执行,curl http://localhost:9527/payment/lb --cookies "username=zzyy"
+            #- Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性并且值为整数的正则表达式 curl http://localhost:9527/payment/lb -H "X-Request-Id:123"
+            #- Host=**.somehost.org,**.another.org
+            #- Method=GET
+            #- Query=username, \d+ # query参数必须有username且为整数才能路由
 

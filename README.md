@@ -946,6 +946,18 @@ CAP ：
         2.访问：http://localhost:9527/payment/lb 交替出现 8001,8002
 
 ### 12.7   （72） GateWay常用的Predicate
+
+    1.spring cloud gateway将路由匹配作为Spring webflux HandleMapping基础架构的一部分。
+      spring cloud gateway包括许多内置的Route Predicate工厂，所有这些Predicate都与http请求的不同属性匹配，多个predicate可以组合使用
+    2.spring cloud gateway创建Route对象时，使用RoutePredicateFactory创建Predicate对象，Predicate对象可以赋值给Route。其包含许多的Route Predicate Factories
+      所有这些谓词都匹配http请求的不同属性。多种谓词工厂可以组合，并通过逻辑and
+    3.测试：
+        curl http://localhost:9527/payment/lb
+        curl http://localhost:9527/payment/lb --cookies "username=zzyy"
+        curl http://localhost:9527/payment/lb -H "X-Request-Id:123"
+        curl http://localhost:9527/payment/lb?username=123
+        curl返回中文乱码问题：http://blog.csdn.net/leedee/article/details/82685636
+    
 ### 12.8   （73） GateWay的Filter
 ## 13.spring-cloud config 分布式配置中心
 ### 13.1   （74） Config分布式配置中心介绍
