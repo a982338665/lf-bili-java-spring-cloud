@@ -925,7 +925,7 @@ CAP ：
                 http://localhost:9527/payment/get/31
         访问结果：都能正常访问，接下来就是隐藏原来端口了  
                 
-### 12.5   （60） GateWay配置路由的两种方式：可混用
+### 12.5   （70） GateWay配置路由的两种方式：可混用
 
     1.yml中进行配置：见【59】
     2.代码编辑：代码中注入RouteLocator的Bean-GateWayConfig
@@ -936,6 +936,15 @@ CAP ：
         http://localhost:9527/guoji   会跳转到百度新闻
     
 ### 12.6   （71） GateWay配置动态路由
+
+    1.默认情况下GateWay会根据注册中心注册的服务列表，以注册中心上微服务名为路径创建动态路由进行转发，从而实现动态路由功能
+    2.启动：一个7001+两个服务提供者8001/8002
+    3.pom：spring-cloud-starter-netflix-eureka-client
+    4.yml：开启动态路由，替换url
+    5.测试：
+        1.必须先启动7001,8001,8002，待成功后再启动9527
+        2.访问：http://localhost:9527/payment/lb 交替出现 8001,8002
+
 ### 12.7   （72） GateWay常用的Predicate
 ### 12.8   （73） GateWay的Filter
 ## 13.spring-cloud config 分布式配置中心
