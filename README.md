@@ -959,6 +959,16 @@ CAP ：
         curl返回中文乱码问题：http://blog.csdn.net/leedee/article/details/82685636
     
 ### 12.8   （73） GateWay的Filter
+    
+    1.生命周期：pre post
+    2.种类：私有+全局
+        ·GatewayFilter：直接在yml中配置
+        ·GlobalFilter：-- 编码
+            ·作用：全局日志记录，统一网关鉴权
+    3.测试：
+        http://localhost:9527/payment/lb 返回406
+        http://localhost:9527/payment/lb?uname=1 正确访问
+        
 ## 13.spring-cloud config 分布式配置中心
 ### 13.1   （74） Config分布式配置中心介绍
 ### 13.2   （75） Config分布式配置 总控中心搭建
