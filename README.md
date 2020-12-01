@@ -1056,7 +1056,7 @@ CAP ：
        ·业务类
        ·测试：
             启动7001，3344，3355
-            测试3344：localhost:3344/mian/config-dev.yml
+            测试3344：localhost:3344/main/config-dev.yml
             测试3355：localhost:3355/configInfo    ==== 通过github获取到了配置信息
        ·分布式配置的动态刷新问题：
             1.linux运维修改github上的配置文件做内容修改
@@ -1066,6 +1066,24 @@ CAP ：
             5.每次运维修改配置文件，客户端需要重启？？？？
     
 ### 13.4   （77） Config动态刷新之手动版
+    
+    0.解决动态刷新问题
+    1.修改3355，pom引入actuator监控
+    2.修改yml，暴露监控端点
+    3.@RefreshScope业务类controller修改
+    4.测试：
+        1.修改github配置文件
+        2.查看3344                    localhost:3344/main/config-dev.yml
+        3.查看3355，看是否同步更新    localhost:3355/configInfo
+        4.测试后仍发现，3344访问获取到的数据是最新的，而3355不是
+            需要运维人员发送post请求刷新3355【手动】
+                1.curl -X POST "http://localhost:3355/actuator/refresh" 返回值：["config.client.version","config.info"]
+                2.使用idea自带的client：Tools--HTTP Client -- Test RESULTFul Web Service
+        5.然后重复上面的步骤测试，就发现3355已经被同步过来了，避免重启
+    5.针对于手动解决动态刷新问题，还会有什么其他问题？？？
+        1.假设有多个微服务客户端3355,33366,3377等，是不是每次更新都需要去各个微服务调用POST请求刷新客户端配置
+        2.可否广播，一次修改，出处生效？ --> 消息总线
+        
 ## 14.spring-cloud BUS总线
 ### 14.1   （78） BUS消息总线是什么
 ### 14.2   （79） BUS之RabbitMq环境配置
