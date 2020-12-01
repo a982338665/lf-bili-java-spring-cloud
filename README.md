@@ -1037,6 +1037,34 @@ CAP ：
                     {"name":"config","profiles":["dev"],"label":"main","version":"dd0c22cba896ae0cf6180a875c08dd73282611fb","state":null,"propertySources":[{"name":"https://github.com/a982338665/config-spring-cloud20201130.git/config-dev.yml","source":{"config.info":"master branch,springcloud-config/config-dev.yml version=7"}}]}
     
 ### 13.3   （76） Config客户端配置与测试
+
+    1.新建客户端3355：config-spring-cloud-client3355
+       ·pom依赖：与服务端的不一样，需要注意
+            spring-cloud-starter-config
+            spring-cloud-config-server
+       ·bootstrap.yml：
+            是什么？
+                application.yml是用户级的资源配置项，bootstrap.yml是系统级的，优先级更高
+                springcloud会创建一个“bootstrap Context”，作为spring应用的“application context”的父上下文，初始化的时候，“bootstrap Context”负责从外部源加载配置属性并解析配置，这两个上下文共享
+                一个从外部获取的“Environment”
+                Bootstrap有高优先级，默认情况下不会被本地配置覆盖，bootstrap Context和application context有着不同的约定，所以新增了一个bootstrap.yml文件，保证两者配置分离
+                【将application.yml更名为bootstrap.yml是很关键的】
+                bootstrap优先于application.yml加载
+            内容：--
+       ·修改config-dev.yml配置并提交到Github，比如价格变量age或者版本号version
+       ·主启动
+       ·业务类
+       ·测试：
+            启动7001，3344，3355
+            测试3344：localhost:3344/mian/config-dev.yml
+            测试3355：localhost:3355/configInfo    ==== 通过github获取到了配置信息
+       ·分布式配置的动态刷新问题：
+            1.linux运维修改github上的配置文件做内容修改
+            2.刷新3344，发现ConfigServer配置中心立刻响应
+            3.刷新3355，发现ConfigClient客户端没有任何响应
+            4.3355没有变化，除非重启或者重新加载
+            5.每次运维修改配置文件，客户端需要重启？？？？
+    
 ### 13.4   （77） Config动态刷新之手动版
 ## 14.spring-cloud BUS总线
 ### 14.1   （78） BUS消息总线是什么
