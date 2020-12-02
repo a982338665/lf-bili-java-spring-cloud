@@ -1086,6 +1086,29 @@ CAP ：
         
 ## 14.spring-cloud BUS总线
 ### 14.1   （78） BUS消息总线是什么
+
+    1.分布式自动刷新配置功能，SpringCloud Bus配合Cloud Config可以实现配置的动态刷新
+    2.Bus是什么？支持两种消息代理
+        1.kafka
+        2.Rabbitmq
+        SpringCloud Bus是用来将分布式系统的节点与轻量级消息系统连接起来的框架，它整合了java的事件处理机制和消息中间件的功能
+        StringCloud Bus目前仅支持kafka，rabbitmq
+        3.流程：
+            1.github:运维修改github仓库的配置中心的文件
+            2.ConfigServer:获取github配置中心文件
+            3.POST /bus/refresh
+            4.ConfigClient01 向 ConfigServer获取配置信息 并想CloudBus订阅
+            5.ConfigClient02 向 ConfigServer获取配置信息 并想CloudBus订阅
+            6.通过Post请求，通知刷新所有订阅到Bus的消息从新获取配置信息
+    3.作用：
+        CloudBus能管理和传播分布式系统间的消息，就像一个分布式执行器，可以用来广播状态更改，事件推送等，也可以当做微服务间的通信通道
+        可以让Post请求去更新COnfigServer，然后Client去订阅server，达到通知目的
+    3.什么是总线：
+        在微服务架构中，通常会使用轻量级的消息代理来构建一个公共的消息主题，并让系统中所有的微服务连接上来，由于该主题产生的消息会被所有实例监听和消费，所以称为消息总线
+        在总线的各个实例，都可以方便的广播一些需要让其他连接在该主题上的实例都知道的消息
+    4.基本原理：
+        ConfigClient实例都监听MQ中的同一个topic（默认为SpringCLoudBus），当一个服务刷新数据的时候，他会把这个信息放到Topic中，这样其他监听同一topic的服务就能得到通知，然后去更新自身配置
+    
 ### 14.2   （79） BUS之RabbitMq环境配置
 ### 14.3   （80） BUS动态刷新全局广播的设计思想和选型
 ### 14.4   （81） BUS动态刷新全局广播配置实现
