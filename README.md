@@ -1110,6 +1110,10 @@ CAP ：
         ConfigClient实例都监听MQ中的同一个topic（默认为SpringCLoudBus），当一个服务刷新数据的时候，他会把这个信息放到Topic中，这样其他监听同一topic的服务就能得到通知，然后去更新自身配置
     
 ### 14.2   （79） BUS之RabbitMq环境配置
+    
+    1.启动：docker run -d --hostname rabbit-host --name rabbitmq -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=pwd -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+        访问：http://server-ip:15672  账号： guest 密码： guest   或者 user/pwd
+    
 ### 14.3   （80） BUS动态刷新全局广播的设计思想和选型
 ### 14.4   （81） BUS动态刷新全局广播配置实现
 ### 14.5   （82） BUS动态刷新定点通知
