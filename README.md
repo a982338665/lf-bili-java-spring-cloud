@@ -1149,7 +1149,14 @@ CAP ：
         9.一次修改广播通知处处生效：修改ConfigServer通知到Client
             curl -X POST "http://localhost:3344/actuator/bus-refresh"
     
-### 14.5   （82） BUS动态刷新定点通知
+### 14.5   （82） BUS动态刷新定点通知 - 只想通知一个，定点通知，只想通知3355不想通知3366
+    
+    1.curl -X POST "http://localhost:3344/actuator/bus-refresh/{destinalion}"
+        /bus/refresh请求不在发送到具体的服务实例上，而是发给ConfigServer通过destinalion参数类指定需要更新配置的服务或实例
+    2.例如只想通知3355，不想通知3366则执行：
+        curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355"
+        config-client指的是yml中的应用名称
+    
 ## 15.spring-cloud Stream 消息驱动
 ### 15.1   （83） Stream为什么被引入
 ### 15.2   （84） Stream是什么及Binder介绍
