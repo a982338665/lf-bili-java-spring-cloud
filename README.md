@@ -1107,7 +1107,7 @@ CAP ：
         在微服务架构中，通常会使用轻量级的消息代理来构建一个公共的消息主题，并让系统中所有的微服务连接上来，由于该主题产生的消息会被所有实例监听和消费，所以称为消息总线
         在总线的各个实例，都可以方便的广播一些需要让其他连接在该主题上的实例都知道的消息
     4.基本原理：
-        ConfigClient实例都监听MQ中的同一个topic（默认为SpringCLoudBus），当一个服务刷新数据的时候，他会把这个信息放到Topic中，这样其他监听同一topic的服务就能得到通知，然后去更新自身配置
+        ConfigClient实例都监听MQ中的同一个topic（默认为springCloudBus），当一个服务刷新数据的时候，他会把这个信息放到Topic中，这样其他监听同一topic的服务就能得到通知，然后去更新自身配置
     
 ### 14.2   （79） BUS之RabbitMq环境配置
     
@@ -1127,6 +1127,28 @@ CAP ：
             3.有一定的局限性，例如，微服务在潜迁移时，他的网络地址常常会发生变化，此时若要自动刷新，就会增加更多修改
     
 ### 14.4   （81） BUS动态刷新全局广播配置实现
+
+    1.3344服务端添加消息总线支持
+        pom:spring-cloud-starter-bus-amqp
+        yml:rabbitmq配置+端点暴露
+    2.3355客户端添加消息总线支持
+        pom:spring-cloud-starter-bus-amqp
+        yml:rabbitmq配置+端点暴露
+    3.3366客户端添加消息总线支持
+        pom:spring-cloud-starter-bus-amqp
+        yml:rabbitmq配置+端点暴露
+    4.测试
+        1.依次启动 7001,3344,3355,3366
+        2.访问3344：localhost:3344/main/config-dev.yml               info: master branch,springcloud-config/config-dev.yml version=888
+        3.访问3355：localhost:3355/configInfo                         master branch,springcloud-config/config-dev.yml version=888
+        4.访问3366：localhost:3366/configInfo                         serverPort: 3366 configInfo: master branch,springcloud-config/config-dev.yml version=888
+        5.修改github：config-spring-cloud20201130下的配置文件，version改为999
+        6.访问3344：localhost:3344/main/config-dev.yml               info: master branch,springcloud-config/config-dev.yml version=999
+        7.访问3355：localhost:3355/configInfo                         master branch,springcloud-config/config-dev.yml version=888
+        8.访问3366：localhost:3366/configInfo                         serverPort: 3366 configInfo: master branch,springcloud-config/config-dev.yml version=888
+        9.一次修改广播通知处处生效：修改ConfigServer通知到Client
+            curl -X POST "http://localhost:3344/actuator/bus-refresh"
+    
 ### 14.5   （82） BUS动态刷新定点通知
 ## 15.spring-cloud Stream 消息驱动
 ### 15.1   （83） Stream为什么被引入
