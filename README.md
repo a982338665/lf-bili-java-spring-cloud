@@ -9,7 +9,7 @@
 >host文件修改：
     C:\Windows\System32\drivers\etc\host
 >Hystrix：https://github.com/Netflix/Hystrix/wiki
-    
+>Stream： https://spring.io/projects/spring-cloud-stream
 >
 ## 目录：
 
@@ -1159,6 +1159,19 @@ CAP ：
     
 ## 15.spring-cloud Stream 消息驱动
 ### 15.1   （83） Stream为什么被引入
+        
+    1.MQ消息中间件：
+        ·ActiveMQ
+        ·RabbitMQ
+        ·RocketMQ
+        ·Kafka
+    2.一个系统可能会用到多种MQ，而Stream就不需要去关注到底使用的是哪种MQ，可以适配任何一种mq，自动在各种mq来回切换
+    3.Stream：屏蔽底层消息中间件的差异，降低切换成本，统一消息的编程模型
+    4.官网：
+        https://spring.io/projects/spring-cloud-stream
+        https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/3.0.1.RELEASE/reference/html/
+        Stream中文手册：http://m.wang1314.com/doc/webapp/topic/20971999.thml
+    
 ### 15.2   （84） Stream是什么及Binder介绍
 ### 15.3   （85） Stream的设计思想
 ### 15.4   （86） Stream编码常用注解简介
