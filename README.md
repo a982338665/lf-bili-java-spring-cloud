@@ -1183,7 +1183,26 @@ CAP ：
         通过使用Spring Integration来连接消息代理中间件以实现消息事件驱动，SpringCloudStream为一些供应商的消息中间件产品提供了个性化的自动化配置实现，引用了发布-订阅，消费组，分区的三个核心概念  
     3.目前SpringCLoud Stream仅支持Rabbitmq，kafka 【来源于官网】
          
-### 15.3   （85） Stream的设计思想
+### 15.3   （85） Stream的设计思想 - 类似于工厂模式【自己理解】
+    
+    1.标准mq，没有引入Stream时：
+        1.生产者，消费者之间靠消息媒介传递信息内容 - Message
+        2.消息必须走特定的通道 - MessageChannel
+        3.消息通道里的消息如何被消费呢，谁负责收发处理 - 消息通道子接口SubscribableChannel，有MessageHandler消息处理器所订阅
+    2.为什么用Stream？
+        例如，同时用到rabbitmq和kafka，由于这两个消息中间件架构上的不同，像Rabbitmq有exchange，kafka有topic和Partition分区
+        在没有绑定器的概念的时候，springboot应用要直接和消息中间件进行交互，由于各个mq的架构不同，实现细节不同，所以
+        通过定义绑定器作为中间层，来将中间件和应用程序解耦合
+        通过向应用程序暴露统一的channel通道，使得应用程序不用在考虑中间件的选择与实现
+        通过定义绑定器binder作为中间层，实现了应用程序和消息中间件细节之间的隔离
+    3.Binder：
+        input       消费者
+        output      生产者
+    4.Stream中的消息通信方式遵循了发布-订阅模式
+        topic主题进行广播：
+            ·在rabbitmq就是exchange
+            ·在kafka中就是topic
+    
 ### 15.4   （86） Stream编码常用注解简介
 ### 15.5   （87） Stream消息启动及生产者
 ### 15.6   （88） Stream消息启动及消费者
