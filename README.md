@@ -1173,6 +1173,16 @@ CAP ：
         Stream中文手册：http://m.wang1314.com/doc/webapp/topic/20971999.thml
     
 ### 15.2   （84） Stream是什么及Binder介绍
+
+    1.主要关注 Binder Implementations
+    2.什么是cloud stream？
+        是一个构建消息驱动微服务的框架
+        应用程序通过inputs或者outputs来与Cloud Stream中的binder对象交互
+        通过配置binding（绑定），Cloud Stream的binder对象负责与消息中间件进行交互
+        所以，只要弄清楚程序如何与Cloud Stream交互就能够很好的使用消息中间件
+        通过使用Spring Integration来连接消息代理中间件以实现消息事件驱动，SpringCloudStream为一些供应商的消息中间件产品提供了个性化的自动化配置实现，引用了发布-订阅，消费组，分区的三个核心概念  
+    3.目前SpringCLoud Stream仅支持Rabbitmq，kafka 【来源于官网】
+         
 ### 15.3   （85） Stream的设计思想
 ### 15.4   （86） Stream编码常用注解简介
 ### 15.5   （87） Stream消息启动及生产者
