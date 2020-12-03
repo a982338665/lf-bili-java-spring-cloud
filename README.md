@@ -1204,6 +1204,23 @@ CAP ：
             ·在kafka中就是topic
     
 ### 15.4   （86） Stream编码常用注解简介
+
+    1.Stream标准流程套路：
+        Binder          方便的连接中间件，屏蔽差异
+        Channel         通道，是队列Queue的一种抽象，在消息通讯系统中就是实现存储和转发的媒介，通过channel对队列进行配置
+        Source和Sink    简单理解为参照对象是cloud Stream，从stream发布消息就是输出，接收消息就是输入
+    2.编码中常用的注解： 
+        @Input              标识输入通道，发布的消息通过该通道进入引用程序
+        @Output             标识输出通道，发布的消息通过该通道离开引用程序
+        @StreamListener     监听队列，用于消费者的队列的消息接收
+        @EnableBinding      指信道channel和exchange绑定在一起
+    3.准备：
+        1.Rabbitmq
+        2.新建三个子模块
+            stream-rabbitmq-cloud-provider8801  生产者
+            stream-rabbitmq-cloud-consumer8802  消费者
+            stream-rabbitmq-cloud-consumer8803  消费者
+    
 ### 15.5   （87） Stream消息启动及生产者
 ### 15.6   （88） Stream消息启动及消费者
 ### 15.7   （89） Stream之消息重复消费
