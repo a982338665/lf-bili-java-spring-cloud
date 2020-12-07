@@ -1421,6 +1421,14 @@ CAP ：
         据说nacos在阿里巴巴内部有超过10w的实例运行，已经过了类似于双11等各种大型流量的考研
         
 ### 18.2   （97）  Nacos安装
+    
+    1.预环境：java8+maven
+    2.下载nacos：去github-release-tag：
+        https://github.com/alibaba/nacos/releases/download/1.1.4/nacos-server-1.1.4.zip 【windows版本】
+    3.解压安装包，运行bin目录下 startup.cmd
+    4.运行成功后访问：localhost:8848/nacos
+        默认账号密码：nacos nacos
+    
 ### 18.3   （98）  Nacos之服务提供者注册
 ### 18.4   （99）  Nacos之服务消费者注册和负载
 ### 18.5   （100） Nacos服务注册中心对比提升
