@@ -1299,8 +1299,13 @@ CAP ：
             group：atguiguA atguiguB
             8802修改yml:group atguiguA
             8803修改yml:group atguiguB
-            测试：不同组，会被重复消费
-        2.
+            测试：访问：http://localhost:8801/sendMessage   不同组，会被重复消费
+        2.8802,8803实现轮询分组，每次只有一个消费者
+            group：atguiguA
+            8802修改yml:group atguiguA
+            8803修改yml:group atguiguA
+            测试：访问：http://localhost:8801/sendMessage   同组，不会被重复消费
+            
 ### 15.9   （91） Stream之消息持久化
 ## 16.spring-cloud Sleuth 分布式请求链路跟踪
 ### 16.1   （92） Sleuth是什么
