@@ -1483,9 +1483,46 @@ CAP ：
         AP模式为了服务的可用性而减弱了一致性，因此AP 模式下只支持注册临时实例
         如果需要在服务级别编辑或者存储配置信息，那么cp是必须的，K8s服务和dns服务只适用于CP模式
         CP模式下则支持注册持久化实例，此时则以Raft协议为集群运行模式，该模式下注册实例之前必须先注册服务，如果服务不存在，则会返回错误
-        curl -X PUT '$Nacos_server:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP'
+        切换命令：curl -X PUT '$Nacos_server:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP'
         
 ### 18.6   （101） Nacos之服务配置中心
+    
+    1.nacos作为配置中心的基础配置：
+        1.新建 nacos-alibaba-config-client3377
+            1.pom: spring-cloud-starter-alibaba-nacos-config
+            2.yml: 两个
+                Nacos同Cloud Config一样，在项目初始化时，要保证先从配置中心进行配置拉取，拉去配置后才能保证项目的正常启动
+                SpringBoot中配置文件的加载是有优先级的，bootstrap高于application
+            3.主启动
+            4.controller：@RefreshScope //支持Nacos的动态刷新功能。    
+        2.在nacos中添加配置信息：nacos中的匹配规则
+            1.理论：nacos中的dataid的组成格式及与springboot配置文件中的匹配规则
+            2.官网：https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html
+                在 Nacos Spring Cloud 中，dataId 的完整格式如下：
+                ${prefix}-${spring.profiles.active}.${file-extension}
+                prefix 默认为 spring.application.name 的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。
+                spring.profiles.active 即为当前环境对应的 profile，详情可以参考 Spring Boot文档。 注意：当 spring.profiles.active 为空时，对应的连接符 - 也将不存在，dataId 的拼接格式变成 ${prefix}.${file-extension}
+                file-exetension 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型。
+                通过 Spring Cloud 原生注解 @RefreshScope 实现配置自动更新： 
+            3.访问localhost:8848,在配置列表中新增文件（最右边的加号）：
+                dataid:nacos-config-client-dev.yaml 【后缀必须是yaml】
+                group: - [后面讲解]
+                配置格式：YAML
+                内容：
+                    config: 
+                        info: "config info for dev,from nacos config center"
+        3.测试：
+            1.nacos客户端新建配置信息
+            2.运行3377
+            3.访问查看配置信息：localhost:3377/config/info
+                config info for dev,from nacos config center
+            4.自带动态刷新：
+                修改下nacos中yaml中的配置信息，再次调用查看配置的接口，就会发现配置已刷新
+                    config:
+                        info: "config info for dev,from nacos config center version=1"
+                访问查看配置信息：localhost:3377/config/info
+                    config info for dev,from nacos config center version=1     
+                           
 ### 18.7   （102） Nacos之命名空间分组和DataID三者关系
 ### 18.8   （103） Nacos之DataID配置
 ### 18.9   （104） Nacos之Group分组方案
