@@ -1398,6 +1398,28 @@ CAP ：
         
 ## 18.spring-cloud Alibaba Nacos 服务注册和配置中心
 ### 18.1   （96）  Nacos简介和下载
+
+    1.Nacos由来：前四个字母分别来自于Naming 和 Configuration的前两个字母，最后一个来自于Service 的 s
+    2.是什么？
+        ·一个更易于构建云原生应用的动态服务发现，配置管理和服务管理平台
+        ·Nacos：Dynamic Naming and Configuration Service
+        ·Nacos就是注册中心 + 配置中心的组合
+            Nacos =  Eureka + Config + Bus
+    3.作用：
+        替代eureka做注册中心
+        替代Config做配置中心
+    4.官网：
+        https://github.com/alibaba/nacos
+        https://nacos.io/zh-cn/
+    5.本次选用版本 1.1.4
+    6.各注册中心比较
+        注册中心    CAP模型 控制台管理 社区活跃度
+        eureka      AP      支持      低（2.X版本闭源）
+        zookeeper   CP      不支持    中
+        consul      CP      支持      高
+        nacos       AP      支持      高
+        据说nacos在阿里巴巴内部有超过10w的实例运行，已经过了类似于双11等各种大型流量的考研
+        
 ### 18.2   （97）  Nacos安装
 ### 18.3   （98）  Nacos之服务提供者注册
 ### 18.4   （99）  Nacos之服务消费者注册和负载
