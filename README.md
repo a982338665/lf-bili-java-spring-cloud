@@ -1565,6 +1565,25 @@ CAP ：
         3.namespace方案
     
 ### 18.9   （104） Nacos之Group分组方案
+    
+    1.nacos客户端新建 dev:info
+        DataId: nacos-config-client-info.yaml
+        Group:  DEV_GROUP
+        配置格式：yaml
+        内容：
+            config:
+                info: "nacos-config-client-info.yaml;DEV_GROUP"
+    2.nacos客户端新建 test:info
+        DataId: nacos-config-client-info.yaml
+        Group:  TSET_GROUP
+        配置格式：yaml
+        内容：
+            config:
+                info: "nacos-config-client-info.yaml;TEST_GROUP"
+    3.bootstrap+application:
+        在config下增加一条group的配置即可，可配置为TEST_GROUP或者DEV_GROUP
+        http://localhost:3377/config/info
+        
 ### 18.10  （105） Nacos之Namespace空间方案
 ### 18.11  （106） Nacos之集群架构说明
 ### 18.12  （107） Nacos之持久化切换配置
