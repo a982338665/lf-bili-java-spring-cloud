@@ -1365,8 +1365,37 @@ CAP ：
             搜索，查看依赖等
 
 ## 17.spring-cloud Alibaba 入门简介
-
 ### 17.1   （95） cloud alibaba简介
+    
+    1.为什么会出现springcloud alibaba？
+        1.主要因为Cloud Netflix项目进入了维护模式
+            https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now
+                Spring Cloud Netflix Projects Entering Maintenance Mode 【springcloud进入了维护模式】，
+                维护模式：不会向模块添加新功能，将修复block级别的bug和安全问题，也会考虑并审查社区小型的pull request
+                打算支持这些模块，直到greenwich版本被普遍采用至少一年
+        2.cloud alibaba已经整合进springcloud
+    2.带来了什么？
+        1.官网：https://github.com/alibaba/spring-cloud-alibaba/blob/master/README-zh.md
+        2.诞生：2018.10.31 SpringCloud Alibaba正式入驻了SpringCloud官方孵化器，并在maven中央仓库发布了第一个版本
+        3.作用：
+            1.服务限流降级：默认支持servlet，Feign，RestTemplate，Dubbo和RocketMQ限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级Metrics监控
+            2.服务注册与发现：适配springcloud服务注册与发现标准，默认集成了ribbon的支持
+            3.分布式配置管理：支持分布式配置中的外部化配置，配置更改时自动刷新
+            4.消息驱动能力：基于 Spring Cloud Stream为微服务应用构建消息驱动能力
+            5.阿里云对象存储：阿里云提供的海量安全，低成本，高可靠的云储存服务。支持在任何应用任何时间任何地点存储和访问任意类型的数据
+            6.分布式任务调度：提供秒级，精准，高可靠，高可用的定时任务调度服务（基于cron表达式）。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有worker
+                （schedulerx-client）上执行
+            7.几乎可以替换掉 Spring Cloud netfilx
+        4.主要内容：
+            1.Sentinel：阿里巴巴开源产品，把流量作为切入点，从流量控制，熔断降级，系统负载保护等多个维度保护服务的稳定性
+            2.Nacos：一个更易于构建云原生应用的动态服务发现，配置管理和服务管理平台
+            3.RocketMQ：基于java的高性能，高吞吐量的分布式消息和流计算平台
+            4.Dubbo：高性能的java RPC框架
+            5.Seata：一个易于使用的高性能微服务分布式事务解决方案
+            6.alibaba Cloud OSS：阿里云对象存储服务（Object Storage Service,简称OSS），是阿里云提供的海量安全，低成本高可用的云存储服务，您可以在任何应用任何时间，任何地点存储和访问任意类型的数据
+            7.alibaba Cloud SchedulerX：阿里中间件团队开发的一款分布式任务调度产品，支持周期性任务与固定时间点触发任务
+    3.cloud 阿里巴巴学习资料获取？
+        
 ## 18.spring-cloud Alibaba Nacos 服务注册和配置中心
 ### 18.1   （96）  Nacos简介和下载
 ### 18.2   （97）  Nacos安装
