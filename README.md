@@ -1486,7 +1486,7 @@ CAP ：
         切换命令：curl -X PUT '$Nacos_server:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP'
         
 ### 18.6   （101） Nacos之服务配置中心
-    
+
     1.nacos作为配置中心的基础配置：
         1.新建 nacos-alibaba-config-client3377
             1.pom: spring-cloud-starter-alibaba-nacos-config
@@ -1524,6 +1524,29 @@ CAP ：
                     config info for dev,from nacos config center version=1     
                            
 ### 18.7   （102） Nacos之命名空间分组和DataID三者关系
+    
+    1.nacos作为配置中心的分类配置：高级部分
+        问题1：
+            实际开发中会区分，dev,test,prod多种环境
+            如何保证指定环境启动时能正确读到nacos上相应环境的配置文件
+        问题2：
+            一个大型分布式微服务系统会有很多微服务子项目，每个微服务项目又都会有相应的开发环境，测试环境，预发环境，正式环境...
+            怎么对这些微服务配置进行管理？
+    2.命名空间分组和DataID三者关系?namspace + group + dataid
+        1.是什么？
+            类似java里面的package+类名
+            最外层的namespace是可以用于区分部署环境的，Group和DataId逻辑上区分两个目标对象
+        2.三者情况？【见图】
+        3.默认情况：
+            namespace = public
+            group = default_group
+            默认cluster是default
+        4.nacos默认的命名空间是public，namespace主要用来实现隔离
+            例如，现在有三个环境，开发，测试，生产，就创建三个namespace，不同的namespace之间是相互隔离的
+        5.group：把不同的微服务划分到同一个分组里
+        6.service：就是微服务，一个service包含多个cluster集群，nacos默认cluster是default，cluster是对指定微服务的一个虚拟划分，比方说为了容灾，将service微服务分别部署在了杭州机房和
+            广州机房，这时就可以给杭州机房的service微服务起一个集群名称（HZ），给广州机房的service微服务起一个集群名称GZ，还可以尽量让同一个机房的微服务互相调用，以提升性能
+    
 ### 18.8   （103） Nacos之DataID配置
 ### 18.9   （104） Nacos之Group分组方案
 ### 18.10  （105） Nacos之Namespace空间方案
