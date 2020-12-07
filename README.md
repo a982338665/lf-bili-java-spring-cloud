@@ -1430,6 +1430,37 @@ CAP ：
         默认账号密码：nacos nacos
     
 ### 18.3   （98）  Nacos之服务提供者注册
+    
+    1.官网：https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html
+        1. Introduction
+        2. Dependency Management
+        3. Spring Cloud Alibaba Nacos Discovery
+        4. Spring Cloud Alibaba Nacos Config
+        5. Spring Cloud Alibaba Sentinel
+        6. Spring Cloud Alibaba Dubbo
+        7. Spring Cloud Alibaba RocketMQ Binder
+        8. Spring Cloud Alibaba Cloud ANS
+        9. Spring Cloud Alibaba Cloud ACM
+        10. Spring Cloud Alibaba Cloud OSS
+        11. Spring Cloud Alibaba Cloud SchedulerX
+        12. Spring Cloud Alibaba Cloud SMS
+    2.新建Module：nacos-alibaba-provider-payment9001
+        1.父pom：
+            spring-cloud-alibaba-dependencies 2.1.0.RELASE
+        2.子pom：
+            spring-cloud-starter-alibaba-nacos-discovery
+        3.yml
+        4.主启动：@EnableDiscoveryClient
+        5.controller
+    3.测试：
+        1.启动nacos
+        2.启动9001
+        3.访问：localhost:9001/payment/nacos/1
+        4.登录nacos：localhost:8848/nacos
+            在服务列表中可以查看注册进去的微服务
+    4.参考9001新建9002
+        实际情况下，端口配置需要灵活，不需要再新建module，需要指定外部参数 -Dserver.port=9011 来多次启动同一个项目【idea调试见图】
+    
 ### 18.4   （99）  Nacos之服务消费者注册和负载
 ### 18.5   （100） Nacos服务注册中心对比提升
 ### 18.6   （101） Nacos之服务配置中心
