@@ -1584,7 +1584,23 @@ CAP ：
         在config下增加一条group的配置即可，可配置为TEST_GROUP或者DEV_GROUP
         http://localhost:3377/config/info
         
-### 18.10  （105） Nacos之Namespace空间方案
+### 18.10  （105） Nacos之Namespace空间方案 - 实际使用中需要掌握
+    
+    1.新建 dev test 的Namespace：nacos客户端点击命名空间新建，会产生流水号id 【见图】
+    2.回到配置管理-配置列表查看，点击上方tab，切换到dev
+        1.新建配置: namespaceID:default:dev  空间下，哪个组，哪个文件
+            DataId: nacos-config-client-dev.yaml
+            Group:  DEFAULT_GROUP
+            配置格式：yaml
+            内容：
+                config:
+                    info: "namespace:dev;;;;default:::dev"
+        2.将1中namespace的id配置在bootstrap中
+        3.修改appliacation中active为dev
+    3.按照域名配置填写
+    4.yml
+    5.测试：http://localhost:3377/config/info
+    
 ### 18.11  （106） Nacos之集群架构说明
 ### 18.12  （107） Nacos之持久化切换配置
 ### 18.13  （108） Nacos之linux版本安装
