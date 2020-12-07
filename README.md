@@ -1326,8 +1326,28 @@ CAP ：
         3.在分布式系统中提供追踪解决方案并且兼容支持了zipkin dashboard （仪表盘-图形化展示）
     
 ### 16.2   （93） Sleuth之zipkin搭建安装
+    
+    1.zipkin：
+        1.下载
+            ·Cloud从F版起已经不需要自己构建Zipkin Server了，只需调用jar包即可
+            ·https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/
+            ·zipkin-server-2.12.9-exec.jar
+        2.运行jar
+            java -jar zipkin-server-2.12.9-exec.jar
+        3.运行控制台
+            localhost:9411/zipkin/
+            术语：
+                ·完整的调用链路：表示一请求链路，一条链路通过Trace Id唯一标识，Span标识发起的请求信息，各span通过parentid关联起来【见图】
+                ·Trace：类似于树结构的Span集合，表示一条调用链路，存在唯一标识
+                ·span：表示调用链路来源，通俗的理解span就是一次请求信息
+    2.服务提供者
+    3.服务消费者
+    4.依次启动7001,8001，80
+    5.访问：localhost:9411
+    
 ### 16.3   （94） Sleuth链路监控展现
 ## 17.spring-cloud Alibaba 入门简介
+
 ### 17.1   （95） cloud alibaba简介
 ## 18.spring-cloud Alibaba Nacos 服务注册和配置中心
 ### 18.1   （96）  Nacos简介和下载
