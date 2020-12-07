@@ -1462,6 +1462,15 @@ CAP ：
         实际情况下，端口配置需要灵活，不需要再新建module，需要指定外部参数 -Dserver.port=9011 来多次启动同一个项目【idea调试见图】
     
 ### 18.4   （99）  Nacos之服务消费者注册和负载
+
+    1.新建module：nacos-alibaba-consumer-order83  -> 自带负载均衡
+        可从依赖中看到，nacos集成了ribbon
+    2.测试：
+        启动nacos，9001,9002,83
+        访问：
+            http://localhost:83/consumer/payment/nacos/1   
+            9001和9002交替出现，说明已经做了负载均衡
+    
 ### 18.5   （100） Nacos服务注册中心对比提升
 ### 18.6   （101） Nacos之服务配置中心
 ### 18.7   （102） Nacos之命名空间分组和DataID三者关系
