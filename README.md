@@ -1548,6 +1548,22 @@ CAP ：
             广州机房，这时就可以给杭州机房的service微服务起一个集群名称（HZ），给广州机房的service微服务起一个集群名称GZ，还可以尽量让同一个机房的微服务互相调用，以提升性能
     
 ### 18.8   （103） Nacos之DataID配置
+    
+    三种方案加载配置
+        1.DataID方案
+            1.指定spring.profile.active和配置文件的DataID来使不同环境下读取不同的配置
+            2.默认空间+默认分组+新建dev和test两个DataID
+                1.新建dev的dataID  nacos-config-client-dev.yaml
+                    config:
+                        info: "config info for dev,from nacos config center nacos-config-client-dev.yaml version=1"
+                2.新建test的dataID nacos-config-client-test.yaml
+                    config:
+                        info: "config info for dev,from nacos config center nacos-config-client-test.yaml version=2"
+            3.通过spring.profile.active属性就能进行多环境下配置文件的读取
+            4.测试: http://localhost:3377/config/info
+        2.group方案
+        3.namespace方案
+    
 ### 18.9   （104） Nacos之Group分组方案
 ### 18.10  （105） Nacos之Namespace空间方案
 ### 18.11  （106） Nacos之集群架构说明
