@@ -1286,6 +1286,21 @@ CAP ：
             在rabbitmq中寻找组名group：见图
     
 ### 15.8   （90） Stream之group解决消息重复消费
+    
+    1.重复消费
+        ·故障现象：重复消费
+        ·导致原因：groupid不同
+    2.解决：
+        自定义配置分为同一组，解决重复消费问题
+    3.原理：
+        微服务应用放置于同一个group中，就能够保证消息只会被其中一个应用消费一次。不同的组是可以消费的，同一个组是竞争关系，且一条数据只能被一个消费
+    4.测试：
+        1.8802,8803变成不同组，group两个不同
+            group：atguiguA atguiguB
+            8802修改yml:group atguiguA
+            8803修改yml:group atguiguB
+            测试：不同组，会被重复消费
+        2.
 ### 15.9   （91） Stream之消息持久化
 ## 16.spring-cloud Sleuth 分布式请求链路跟踪
 ### 16.1   （92） Sleuth是什么
