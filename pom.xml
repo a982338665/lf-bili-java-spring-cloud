@@ -26,6 +26,7 @@
         <module>config-spring-cloud-client3355</module>
         <module>config-spring-cloud-client3366</module>
         <module>stream-rabbitmq-cloud-provider8801</module>
+        <module>stream-rabbitmq-cloud-consumer8802</module>
     </modules>
     <packaging>pom</packaging>
 

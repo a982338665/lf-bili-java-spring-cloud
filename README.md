@@ -1232,11 +1232,37 @@ CAP ：
     6.测试：
         1.启动7001-eureka
         2.启动rabbitmq-http://122.51.144.140:15672
-        3.启动8801
+        3.启动8801：会报连接错误，但是没有测试影响
         4.访问：
             localhost:8801/sendMessage   登录rabbitmq可以看见波峰
         
 ### 15.6   （88） Stream消息驱动及消费者
+
+    1.新建 stream-rabbitmq-cloud-consumer8802
+    2.pom：spring-cloud-starter-stream-rabbit
+    3.yml: 
+           input: # 这个名字是一个通道的名称
+    4.主启动
+    5.业务类
+        1.由于是消费者队列，没有controller只有监听队列
+            controller：
+                @Component
+                @EnableBinding(Sink.class)
+                public class ReceiveMessageListenerController
+                {
+                    @Value("${server.port}")
+                    private String serverPort;
+                    @StreamListener(Sink.INPUT)
+                    public void input(Message<String> message)
+                    {
+                        System.out.println("消费者1号,----->接受到的消息: "+message.getPayload()+"\t  port: "+serverPort);
+                    }
+                }      
+    6.测试：
+        0.启动7001，rabbitmq，8801（会报连接错误，但是没有测试影响）,8802（会报连接错误，但是没有测试影响）
+        1.访问：localhost:8801/sendMessage
+        2.结果，发送成功，接收成功
+       
 ### 15.7   （89） Stream之消息重复消费
 ### 15.8   （90） Stream之group解决消息重复消费
 ### 15.9   （91） Stream之消息持久化
