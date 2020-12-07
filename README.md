@@ -1346,6 +1346,24 @@ CAP ：
     5.访问：localhost:9411
     
 ### 16.3   （94） Sleuth链路监控展现
+
+    1.修改：eureka-cloud-provider-payment8001，eureka-cloud-consumer-order80
+        1.pom
+            spring-cloud-starter-zipkin
+        2.yml
+            设置zipkin
+        3.controller
+            /zipkin    
+    2.测试
+        0.启动 zipkin：java -jar zipkin-server-2.12.9-exec.jar
+        1.启动7001
+        2.启动8001
+        3.启动80
+        4.80调用8001几次测试下：
+            localhost/consumer/payment/zipkin
+        5.访问localhost:9411,可在服务列表中看到注册刚才启动的服务
+            搜索，查看依赖等
+
 ## 17.spring-cloud Alibaba 入门简介
 
 ### 17.1   （95） cloud alibaba简介

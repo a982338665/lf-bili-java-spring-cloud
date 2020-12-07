@@ -41,6 +41,7 @@ public class OrderController {
 
     /**
      * 返回响应体json
+     *
      * @param id
      * @return
      */
@@ -51,34 +52,39 @@ public class OrderController {
 
     /**
      * 返回对象为ResponseEntity对象，包含了响应中的一些重要信息，比如响应头，响应状态码，响应体等
+     *
      * @param id
      * @return
      */
     @GetMapping("/consumer/payment/getForEntity/{id}")
     public CommonResult<Payment> getForEntity(@PathVariable("id") Long id) {
         ResponseEntity<CommonResult> forEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
-        if(forEntity.getStatusCode().is2xxSuccessful()){
+        if (forEntity.getStatusCode().is2xxSuccessful()) {
             return forEntity.getBody();
-        }else{
-            return new CommonResult(444,"操作失败");
+        } else {
+            return new CommonResult(444, "操作失败");
         }
     }
 
     @GetMapping(value = "/consumer/payment/lb")
-    public String getPaymentLB()
-    {
+    public String getPaymentLB() {
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
 
-        if(instances == null || instances.size() <= 0)
-        {
+        if (instances == null || instances.size() <= 0) {
             return null;
         }
 
         ServiceInstance serviceInstance = loadBalancer.instances(instances);
         URI uri = serviceInstance.getUri();
 
-        return restTemplate.getForObject(uri+"/payment/lb",String.class);
+        return restTemplate.getForObject(uri + "/payment/lb", String.class);
 
     }
 
+    // ====================> zipkin+sleuth
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+        String result = restTemplate.getForObject("http://localhost:8001" + "/payment/zipkin/", String.class);
+        return result;
+    }
 }
