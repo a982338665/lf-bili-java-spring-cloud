@@ -1221,8 +1221,22 @@ CAP ：
             stream-rabbitmq-cloud-consumer8802  消费者
             stream-rabbitmq-cloud-consumer8803  消费者
     
-### 15.5   （87） Stream消息启动及生产者
-### 15.6   （88） Stream消息启动及消费者
+### 15.5   （87） Stream消息驱动及生产者
+
+    1.新建 stream-rabbitmq-cloud-provider8801
+    2.pom:spring-cloud-starter-stream-rabbit
+    3.yml: 
+        output: # 这个名字是一个通道的名称
+    4.主启动类8801：
+    5.业务类：controller调用的不再是service，而是消息中间件注解
+    6.测试：
+        1.启动7001-eureka
+        2.启动rabbitmq-http://122.51.144.140:15672
+        3.启动8801
+        4.访问：
+            localhost:8801/sendMessage   登录rabbitmq可以看见波峰
+        
+### 15.6   （88） Stream消息驱动及消费者
 ### 15.7   （89） Stream之消息重复消费
 ### 15.8   （90） Stream之group解决消息重复消费
 ### 15.9   （91） Stream之消息持久化
