@@ -11,6 +11,8 @@
 >Hystrix：https://github.com/Netflix/Hystrix/wiki
 >Stream： https://spring.io/projects/spring-cloud-stream
 >Nacos：https://github.com/alibaba/nacos/releases/download/1.1.4/
+>springcloud集成sentinel文档：https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html#_spring_cloud_alibaba_sentinel
+>下载地址：https://github.com/alibaba/Sentinel/releases/download/1.7.0/sentinel-dashboard-1.7.0.jar
 >
 ## 目录：
 
@@ -1773,6 +1775,24 @@ CAP ：
             2.直接界面化的细粒度统一配置
     
 ### 19.2   （112） Sentinel下载安装运行
+    
+    1.下载地址：https://github.com/alibaba/Sentinel/releases/download/1.7.0/sentinel-dashboard-1.7.0.jar
+    2.springcloud集成sentinel文档：https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html#_spring_cloud_alibaba_sentinel
+    3.安装sentinel控制台：
+        1.sentinel组件由两部分构成
+            1.后台
+            2.前台8080
+        2.安装步骤 
+            1.下载地址：https://github.com/alibaba/Sentinel/releases/download/1.7.0/sentinel-dashboard-1.7.0.jar
+            2.前提：java8环境且8080端口不能被占用
+                java -jar sentinel-dashboard-1.7.0.jar
+            3.访问web：localhost:8080
+                username：sentinel
+                password：sentinel
+    4.sentinel分为两部分
+        1.核心库（java客户端），不依赖任何框架/库，能够运行于所有java运行时环境，同时对dubbo，springcloud等框架也有很好的支持
+        2.控制台（Dashboard），基于springboot开发，打包后可以直接运行，不需要额外的tomcat等应用
+    
 ### 19.3   （113） Sentinel初始化监控
 ### 19.4   （114） Sentinel流控规则简介
 ### 19.5   （115） Sentinel流控-QPS直接失败
