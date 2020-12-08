@@ -1731,11 +1731,34 @@ CAP ：
                 ./startup.sh -p 4444 
                 ./startup.sh -p 5555 
         5.nginx的配置，由他作为负载均衡器
+            1.修改nginx的配置文件
+            2.nginx.conf
+                upstream cluster{
+                    server 127.0.0.1:3333;
+                    server 127.0.0.1:4444;
+                    server 127.0.0.1:5555;
+                }
+                server {
+                    listen 1111
+                    server_name localhost;
+                    location / {
+                        proxy_pass http://cluster
+                    }
+                }
+            3.按照指定启动
+                ./nginx -c /usr/local/nginx/conf/nginx.conf
         6.截止到此处：1个nginx+3个nacos+1个mysql
+            1.测试通过nginx访问nacos ： 127.0.0.1:1111/nacos/#/login
+            2.登录nacos后新建一个配置测试，mysql中加入了相应的记录
     4.测试
-    5.总结
+        微服务nacos-alibaba-provider-payment9002 注册进nacos集群：
+            修改yml中的 nacos地址为 127.0.0.1:1111
+    5.总结【见图】
 
 ### 18.15  （110） Nacos之集群配置下
+
+    总结【见图】
+
 ## 19.spring-cloud Alibaba Sentinel实现熔断与限流
 ### 19.1   （111） Sentinel是什么
 ### 19.2   （112） Sentinel下载安装运行
