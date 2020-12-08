@@ -1794,6 +1794,20 @@ CAP ：
         2.控制台（Dashboard），基于springboot开发，打包后可以直接运行，不需要额外的tomcat等应用
     
 ### 19.3   （113） Sentinel初始化监控
+    
+    1.初始化演示工程
+        1.启动nacos 8848
+        2.新建module8401：sentinel-alibaba-service8401
+            pom
+        3.启动sentinel客户端 8080
+        4.启动微服务8401
+        5.启动8401后查看sentinel控制台
+            1.内容为空
+            2.sentinel采用懒加载说明：
+                执行一次访问即可：localhost:8401/testA
+                执行一次访问即可：localhost:8401/testB
+            3.刷新8080可见
+    
 ### 19.4   （114） Sentinel流控规则简介
 ### 19.5   （115） Sentinel流控-QPS直接失败
 ### 19.6   （116） Sentinel流控-线程数直接失败
