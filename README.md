@@ -1634,6 +1634,25 @@ CAP ：
         4.再以单机模式启动nacos，nacos所有写嵌入式数据库的数据都写到了mysql
         
 ### 18.12  （107） Nacos之持久化切换配置
+
+    1.Nacos持久化配置解释：
+        1.Nacos默认自带的是嵌入式数据库derby：https://github.com/alibaba/nacos/blob/develop/config/pom.xml
+             <dependency>
+                 <groupId>org.apache.derby</groupId>
+                 <artifactId>derby</artifactId>
+             </dependency>
+        2.derby到mysql切换配置步骤
+            ·nacos-server-1.1.4/nacos/conf 目录下找到sql脚本
+                nacos-mysql.sql
+                找到要使用的mysql去执行以上脚本
+            ·nacos-server-1.1.4/nacos/conf 目录下找到 application.properties
+                spring.datasource.platform=mysql
+                db.num=1
+                db.url.0=jdbc:mysql://localhost:3306/nacos_devtest?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+                db.user=root
+                db.password=root
+            ·重启nacos，可以看到记录被清空了，以前的数据是被存储在了derby中
+    
 ### 18.13  （108） Nacos之linux版本安装
 ### 18.14  （109） Nacos之集群配置上
 ### 18.15  （110） Nacos之集群配置下
