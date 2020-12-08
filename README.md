@@ -1761,6 +1761,17 @@ CAP ：
 
 ## 19.spring-cloud Alibaba Sentinel实现熔断与限流
 ### 19.1   （111） Sentinel是什么
+
+    1.中文官网：https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D
+    2.Hystrix与Sentinel比较
+        Hystrix：
+            1.需要自己手动搭建平台
+            2.没有一套web界面可以给我们进行更细粒度化的配置
+                流量控制，速率控制，服务熔断，服务降级
+        Sentinel：-哨兵
+            1.单独一个可独立的组件
+            2.直接界面化的细粒度统一配置
+    
 ### 19.2   （112） Sentinel下载安装运行
 ### 19.3   （113） Sentinel初始化监控
 ### 19.4   （114） Sentinel流控规则简介
