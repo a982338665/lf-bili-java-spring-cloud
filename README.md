@@ -1602,6 +1602,37 @@ CAP ：
     5.测试：http://localhost:3377/config/info
     
 ### 18.11  （106） Nacos之集群架构说明
+
+    1.nacod集群和持久化配置（重要）- 一定要搭建Nacos集群
+        ·官网说明：https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html 
+            部署生产使用的集群模式
+            集群部署架构图【官网见图】【真实生产配图】
+        ·Nacos持久化配置解释
+        ·Linux版nacos+mysql生产环境配置
+    2.说明：
+        nginx集群：代表vip，避免淡定故障
+        nacos集群：避免单点故障
+        mysql集群：nacos中数据存储的统一位置
+        默认的nacos使用的内置数据库进行存储，所以如果启动多个默认配置下的Nacos节点，数据存储是存在一致性问题的。为了解决这个问题，Nacos采用了集中存储的方式
+        以支持集群化部署，目前只支持mysql的存储
+    3.nacos支持三种部署模式：
+        1.单机模式 - 用于测试和单机使用
+        2.集群模式 - 用于生产环境，确保高可用
+        3.多集群模式 - 用于多数据中心场景
+    4.windows
+        双击 startup.cmd
+    5.单机模式支持mysql【均来自官网】
+        在0.7版本之前，在单机模式时nacos使用嵌入式数据库实现数据的存储，不方便观察数据存储的基本情况。0.7版本增加了支持mysql数据源能力，具体的操作步骤：
+        1.安装数据库，版本要求：5.6.5+
+        2.初始化mysql数据库，数据库初始化文件：nacos-mysql.sql
+        3.修改conf/application.properties文件，增加支持mysql数据源配置（目前只支持mysql），添加mysql数据源的url、用户名和密码。
+              spring.datasource.platform=mysql
+              db.num=1
+              db.url.0=jdbc:mysql://11.162.196.16:3306/nacos_devtest?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+              db.user=nacos_devtest
+              db.password=youdontknow
+        4.再以单机模式启动nacos，nacos所有写嵌入式数据库的数据都写到了mysql
+        
 ### 18.12  （107） Nacos之持久化切换配置
 ### 18.13  （108） Nacos之linux版本安装
 ### 18.14  （109） Nacos之集群配置上
