@@ -10,6 +10,7 @@
     C:\Windows\System32\drivers\etc\host
 >Hystrix：https://github.com/Netflix/Hystrix/wiki
 >Stream： https://spring.io/projects/spring-cloud-stream
+>Nacos：https://github.com/alibaba/nacos/releases/download/1.1.4/
 >
 ## 目录：
 
@@ -1656,16 +1657,83 @@ CAP ：
 ### 18.13  （108） Nacos之linux版本安装
     
     1.linux版Nacos+mysql生产环境配置
-        1.预计需要，1个nginx+3个nacos注册中心+1个mysql
+        1.预计需要，1个nginx+3个nacos注册中心+1个mysql 【至少3个nacos才能做集群-见官网】
         2.nacos下载linux版本：
             https://github.com/alibaba/nacos/releases/download/1.1.4/nacos-server-1.1.4.tar.gz
             解压即用
     
 ### 18.14  （109） Nacos之集群配置上
 
-        3.集群配置步骤（重点）
-            4.测试
-            5.总结
+    1.集群配置步骤（重点）
+        1.Linux服务器上mysql数据库配置
+             ·nacos-server-1.1.4/nacos/conf 目录下找到sql脚本
+                 nacos-mysql.sql
+                 找到要使用的mysql去执行以上脚本
+        2.application.properties配置
+             ·nacos-server-1.1.4/nacos/conf 目录下找到 application.properties 【先备份，在修改】
+                 spring.datasource.platform=mysql
+                 db.num=1
+                 db.url.0=jdbc:mysql://localhost:3306/nacos_devtest?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+                 db.user=root
+                 db.password=root
+        3.linux服务器上nacos集群配置cluster.conf
+            1.梳理出3台nacos集群的不同服务端口号
+            2.复制出cluster.conf 
+                cp cluster.conf.example cluster.conf
+            3.内容 
+                vim cluster.conf  【ip不能为127.0.0.1，必须为linux命令 hostname -i  能够识别的ip，centos中使用hostname -i 命令可以查询出ip】
+                    192.168.0.191:3333
+                    192.168.0.191:4444
+                    192.168.0.191:5555
+        4.编辑nacos的启动脚本startup.sh，使他能够接收不同的启动端口
+            1./nacos/bin 目录下 startup.sh
+            2.怎么修改startup.sh
+            3.要求命令： ./startup.sh -p 3333   表示启动端口号为3333的nacos服务器实例
+            4.修改 startup.sh
+                修改前：
+                    while getopts ": m: f: s:" opt
+                    do 
+                        case $opt in
+                            m) 
+                                MODE=$OPTARG;;
+                            f)
+                                FUNCTION_MODE=$OPTARG;;
+                            s)
+                                SERVER=$OPTARG;;
+                            ?)
+                            echo "Unknown parameter"
+                            exit 1;;
+                        esac
+                    done
+                    ...
+                    nohup $JAVA ${JAVA_OPT} nacos.nacos >>${BASE_DIR}/logs/start.out 2>&1 &
+                修改后：
+                    while getopts ": m: f: s: p:" opt
+                    do 
+                        case $opt in
+                            m) 
+                                MODE=$OPTARG;;
+                            f)
+                                FUNCTION_MODE=$OPTARG;;
+                            s)
+                                SERVER=$OPTARG;;
+                            p)
+                                PORT=$OPTARG;;
+                            ?)
+                            echo "Unknown parameter"
+                            exit 1;;
+                        esac
+                    done
+                    ...
+                    nohup $JAVA -Dserver.port=${PORT} ${JAVA_OPT} nacos.nacos >>${BASE_DIR}/logs/start.out 2>&1 &
+            5.执行命令：
+                ./startup.sh -p 3333 
+                ./startup.sh -p 4444 
+                ./startup.sh -p 5555 
+        5.nginx的配置，由他作为负载均衡器
+        6.截止到此处：1个nginx+3个nacos+1个mysql
+    4.测试
+    5.总结
 
 ### 18.15  （110） Nacos之集群配置下
 ## 19.spring-cloud Alibaba Sentinel实现熔断与限流
