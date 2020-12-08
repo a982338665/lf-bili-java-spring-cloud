@@ -1654,7 +1654,19 @@ CAP ：
             ·重启nacos，可以看到记录被清空了，以前的数据是被存储在了derby中
     
 ### 18.13  （108） Nacos之linux版本安装
+    
+    1.linux版Nacos+mysql生产环境配置
+        1.预计需要，1个nginx+3个nacos注册中心+1个mysql
+        2.nacos下载linux版本：
+            https://github.com/alibaba/nacos/releases/download/1.1.4/nacos-server-1.1.4.tar.gz
+            解压即用
+    
 ### 18.14  （109） Nacos之集群配置上
+
+        3.集群配置步骤（重点）
+            4.测试
+            5.总结
+
 ### 18.15  （110） Nacos之集群配置下
 ## 19.spring-cloud Alibaba Sentinel实现熔断与限流
 ### 19.1   （111） Sentinel是什么
