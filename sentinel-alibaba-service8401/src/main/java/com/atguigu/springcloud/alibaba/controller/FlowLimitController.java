@@ -19,12 +19,12 @@ public class FlowLimitController {
     @GetMapping("/testA")
     public String testA() {
         //暂停毫秒，用来测试线程数限流
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//        }
         return "------testA";
     }
     @GetMapping("/testB")

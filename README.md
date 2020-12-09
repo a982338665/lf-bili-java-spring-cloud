@@ -1846,6 +1846,18 @@ CAP ：
             2.结果：Blocked by Sentinel（flow limiting）
     
 ### 19.7   （117） Sentinel流控-关联
+    
+    1.关联：
+        1.是什么
+            1.当关联的资源达到阈值的时候，限流自己
+            2.当与A关联的资源B达到阈值后，就限流A自己
+            3.B惹事A挂了
+        2.配置A
+            当关联资源/testB的qps阀值超过1时，就限流testA的rest访问地址
+            例如：【支付接口要不行了，那么就将订单接口限流下】
+        3.postman模拟并发密集访问testB 【见图】
+        4.运行后发现testA挂了
+    
 ### 19.8   （118） Sentinel流控-预热
 ### 19.9   （119） Sentinel流控-排队等待
 ### 19.10  （120） Sentinel降级简介
