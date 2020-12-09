@@ -1829,7 +1829,7 @@ CAP ：
     
 ### 19.5   （115） Sentinel流控-QPS直接失败
     
-    1.直接-快速失败【见图】
+    1.直接-qps-快速失败【见图】
         测试：
             0.表示1秒查询一次ok，多于1次限流报错
             1.快速访问：localhost:8401/testA
@@ -1837,6 +1837,14 @@ CAP ：
             3.问题：直接调用的默认报错信息【Blocked by Sentinel（flow limiting）】，是否应该有自己的后续处理，是不是应该有fallback的方法
             
 ### 19.6   （116） Sentinel流控-线程数直接失败
+
+    1.直接-线程数-快速失败【见图】
+        在/testA 接口中添加Sleep1秒，
+        测试
+            0.表示1秒中只允许一个线程处理，多于一次限流报错
+            1.连续点击：localhost:8401/testA，因为这个接口里面sleep1秒，所以连续点击，就会造成多个线程进入，那么将只有第一次访问正常，其余报错
+            2.结果：Blocked by Sentinel（flow limiting）
+    
 ### 19.7   （117） Sentinel流控-关联
 ### 19.8   （118） Sentinel流控-预热
 ### 19.9   （119） Sentinel流控-排队等待
