@@ -1875,6 +1875,13 @@ CAP ：
         3.排队等待
     
 ### 19.9   （119） Sentinel流控-排队等待
+    
+    1.官网：https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6
+        匀速排队（RuleConstant.CONTROL_BEHAVIOR_RATE_LIMITER）方式会严格控制请求通过的间隔时间，也即是让请求以均匀的速度通过，对应的是漏桶算法【大厂面试第三季有过讲解】
+        。详细文档可以参考 流量控制 - 匀速器模式
+    2.源码：com.alibaba.csp.sentinel.slots.block.flow.controller.RateLimiterController
+        一秒一个排队进入
+    
 ### 19.10  （120） Sentinel降级简介
 ### 19.11  （121） Sentinel降级-RT
 ### 19.12  （122） Sentinel降级-异常比例
