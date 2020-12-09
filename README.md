@@ -1859,6 +1859,21 @@ CAP ：
         4.运行后发现testA挂了
     
 ### 19.8   （118） Sentinel流控-预热
+    
+    1.链路：多个请求调用同一个微服务
+    2.流控效果
+        1.直接-快速失败
+            1.直接失败，抛出异常
+            2.源码：com.alibaba.csp.sentinel.slots.block.flow.controller.DefaultController
+        2.warm up预热
+            1.说明：公式-阈值除以codeFactor（默认为3），经过预热时长后才会达到阈值
+            2.官网：https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6#%E5%9F%BA%E4%BA%8E%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E9%99%90%E6%B5%81
+                Warm Up（RuleConstant.CONTROL_BEHAVIOR_WARM_UP）方式，即预热/冷启动方式。当系统长期处于低水位的情况下，当流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。
+                通过"冷启动"，让通过的流量缓慢增加，在一定时间内逐渐增加到阈值上限，给冷系统一个预热的时间，避免冷系统被压垮
+                默认codeFactor为3，即请求QPS从threshold/3开始，经预热时长逐渐升至设定的QPS阈值】
+            3.应用场景：秒杀系统在开启的瞬间，会有很多流量上来，很可能会把系统打死，预热方式就是为了保护系统，将流量慢慢放进来，慢慢的将阀值增加到设置的阀值
+        3.排队等待
+    
 ### 19.9   （119） Sentinel流控-排队等待
 ### 19.10  （120） Sentinel降级简介
 ### 19.11  （121） Sentinel降级-RT
