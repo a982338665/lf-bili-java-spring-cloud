@@ -1828,6 +1828,14 @@ CAP ：
             ·排队等待：均匀排队，让请求以匀速的速度通过，阈值类型必须设置为QPS，否则无效
     
 ### 19.5   （115） Sentinel流控-QPS直接失败
+    
+    1.直接-快速失败【见图】
+        测试：
+            0.表示1秒查询一次ok，多于1次限流报错
+            1.快速访问：localhost:8401/testA
+            2.结果：Blocked by Sentinel（flow limiting）
+            3.问题：直接调用的默认报错信息【Blocked by Sentinel（flow limiting）】，是否应该有自己的后续处理，是不是应该有fallback的方法
+            
 ### 19.6   （116） Sentinel流控-线程数直接失败
 ### 19.7   （117） Sentinel流控-关联
 ### 19.8   （118） Sentinel流控-预热
