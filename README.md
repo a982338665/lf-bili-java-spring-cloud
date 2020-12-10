@@ -2066,6 +2066,13 @@ CAP ：
         6.进一步说明【见图】
 
 ### 19.19  （129） SentinelResource配置下
+    
+    1.代码级别配置-不建议
+    2.Sentinel的三个核心API
+        SphU-定义资源
+        Tracer-定义统计
+        ContextUtil-定义了上下文
+    
 ### 19.20  （130） Sentinel服务熔断Ribbon环境预说
 ### 19.21  （131） Sentinel服务熔断无配置
 ### 19.22  （132） Sentinel服务熔断只配置fallback
