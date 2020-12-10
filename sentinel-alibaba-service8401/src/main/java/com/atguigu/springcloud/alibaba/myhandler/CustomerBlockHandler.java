@@ -7,6 +7,7 @@ import com.atguigu.springcloud.entities.Payment;
 /**
  * @auther zzyy
  * @create 2020-02-25 15:32
+ * 自建的 统一处理逻辑
  */
 public class CustomerBlockHandler
 {

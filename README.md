@@ -2054,7 +2054,17 @@ CAP ：
     4.客户自定义限流处理逻辑
     5.更多注解属性说明
     
-### 19.18  （128） SentinelResource配置中
+### 19.18  （128） SentinelResource配置中-客户自定义限流处理逻辑
+
+    1.客户自定义限流处理逻辑
+        1.创建CustomerBlockHandler类用于自定义限流处理逻辑
+        2.修改RateLimitController
+        3.启动微服务后先调用一次
+            localhost:8401/rateLimit/customerBlockHandler
+        4.Sentinel控制台配置
+        5.测试后自定义的出来了
+        6.进一步说明【见图】
+
 ### 19.19  （129） SentinelResource配置下
 ### 19.20  （130） Sentinel服务熔断Ribbon环境预说
 ### 19.21  （131） Sentinel服务熔断无配置
