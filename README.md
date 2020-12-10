@@ -1959,6 +1959,13 @@ CAP ：
     2.测试：
         
 ### 19.14  （124） Sentinel热点key 上
+    
+    1.热点参数限流会统计传入参数中的热点参数，并根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。热点参数限流可以看做是一种特殊的流量控制，仅对包含热点参数的资源调用生效。
+    2.从HystrixCommand到@SentinelResource
+        默认兜底方法，自定义兜底方法
+    3.代码：    @GetMapping("/testHotKey")
+        com.alibaba.csp.sentinel.slots.block.BlockException
+    
 ### 19.15  （125） Sentinel热点key 下    
 ### 19.16  （126） Sentinel系统规则
 ### 19.17  （127） SentinelResource配置上
