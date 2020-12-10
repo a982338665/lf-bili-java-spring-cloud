@@ -2005,6 +2005,31 @@ CAP ：
     3.使用比较危险
         
 ### 19.17  （127） SentinelResource配置上
+    
+    1.按资源名称限流+后续处理
+        1.启动nacos成功
+        2.启动sentinel成功
+        3.module
+            1.修改8401
+            2.pom：cloud-api-commons
+            3.新加业务类：RateLimitController
+        4.配置流控规则
+            1.新增流控规则：
+                资源名 byResource 【这个名称对应controller中的 @SentinelResource(value = "byResource",blockHandler = "handleException")的value的值】
+                QPS 1
+        5.测试
+            先访问下 localhost:8401/byResource  将此资源加载到sentinel中
+            登录sentinel添加流控规则
+            一秒钟点击一下localhost:8401/byResource ok
+            频繁点击localhost:8401/byResource 则返回自定义的限流处理信息 
+                {"code":"444","message":"com.alibaba.csp.sentinel.slots.block.flow.FlowException\t 服务不可用","data":null}
+        6.额外问题
+            1.此时关闭服务8401，在访问sentinel会发现，流控规则丢失，说明基于服务配置的流控规则是不会持久化的，服务停止则丢失
+    2.按照url地址限流+后续处理
+    3.上面兜底方案面临的问题
+    4.客户自定义限流处理逻辑
+    5.更多注解属性说明
+    
 ### 19.18  （128） SentinelResource配置中
 ### 19.19  （129） SentinelResource配置下
 ### 19.20  （130） Sentinel服务熔断Ribbon环境预说
