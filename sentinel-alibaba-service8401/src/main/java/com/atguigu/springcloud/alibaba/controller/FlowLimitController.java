@@ -60,7 +60,8 @@ public class FlowLimitController {
     public String testHotKey(@RequestParam(value = "p1",required = false) String p1,
                              @RequestParam(value = "p2",required = false) String p2)
     {
-        //int age = 10/0;
+        //sentinel只管的是流控的错误，而非代码的错误，因此此处报错并不会进入方法deal_testHotKey
+        int age = 10/0;
         return "------testHotKey";
     }
     public String deal_testHotKey (String p1, String p2, BlockException exception)

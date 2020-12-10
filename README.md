@@ -1967,6 +1967,29 @@ CAP ：
         com.alibaba.csp.sentinel.slots.block.BlockException
     
 ### 19.15  （125） Sentinel热点key 下    
+    
+    1.参数例外项
+        上述案例演示了第一个参数p1，当QPS超过1秒一次点击后马上被限流
+    2.特例情况
+        普通：超过1秒钟1个后马上限流
+        特殊：期望p1参数是某个特殊值的时候，他的限流值和平时要不一样
+        特例：例如当p1的值等于5的时候，他的阈值可以达到200，等同于对p1参数的过滤，更加特殊化 ，这就是某个参数-具体值的例外项
+    3.配置：
+        头部：
+            参数索引 0
+            单机阈值 1
+            统计窗口时长 1
+        参数例外项：
+            参数类型：java.leng.String
+            参数值 5
+            限流阈值 200
+    4.测试
+        localhost:8401/testHotKey?p1=5  ps=5时作为参数例外项，阈值变为200
+        localhost:8401/testHotKey?p1=3  ps!=5时公有配置，阈值变为1
+    5.前提条件
+        热点参数的注意点：参数类型必须是8种基本类型或者String
+     //sentinel只管的是流控的错误，而非代码的错误，因此此处报错并不会进入方法deal_testHotKey
+     
 ### 19.16  （126） Sentinel系统规则
 ### 19.17  （127） SentinelResource配置上
 ### 19.18  （128） SentinelResource配置中
