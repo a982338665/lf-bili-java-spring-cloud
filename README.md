@@ -2016,7 +2016,8 @@ CAP ：
         4.配置流控规则
             1.新增流控规则：
                 资源名 byResource 【这个名称对应controller中的 @SentinelResource(value = "byResource",blockHandler = "handleException")的value的值】
-                QPS 1
+                阈值类型 QPS 
+                单机阈值 1
         5.测试
             先访问下 localhost:8401/byResource  将此资源加载到sentinel中
             登录sentinel添加流控规则
@@ -2026,7 +2027,30 @@ CAP ：
         6.额外问题
             1.此时关闭服务8401，在访问sentinel会发现，流控规则丢失，说明基于服务配置的流控规则是不会持久化的，服务停止则丢失
     2.按照url地址限流+后续处理
-    3.上面兜底方案面临的问题
+        1.通过访问的url来限流，会返回Sentinel自带默认的限流处理信息
+        2.业务类RateLimitController
+        3.访问一次
+        4.Sentinel控制台配置
+            新增流控规则
+                资源名 /rateLimit/byUrl
+                阈值类型 QPS 
+                单机阈值 1
+        5.测试
+            频繁点击 localhost:8401/rateLimit/byUrl
+            返回自带的处理信息：Blocked by Sentinel （Flow Limiting）
+        6.结论：
+            Sentinel中流控配置中的资源名可以是
+                    @GetMapping("/rateLimit/byUrl")
+                    @SentinelResource(value = "byUrl")
+            中的@GetMapping的值，也可以是@SentinelResource(value的值，都可行，且若
+                @SentinelResource(value = "byResource",blockHandler = "handleException")
+            blockHandler未申明时，取默认、、sentinel默认返回值 Blocked by Sentinel （Flow Limiting）
+    3.上面兜底方案面临的问题 - blockHandler = "handleException"
+        1.同Hystrix的问题相同：
+            1.系统默认的没有体现出自己的要求
+            2.使用blockHandler = "handleException"会和controller代码耦合在一起，不直观
+            3.每个业务方法都添加一个兜底的，导致代码膨胀加剧
+            4.全局统一的处理方法没有体现
     4.客户自定义限流处理逻辑
     5.更多注解属性说明
     
