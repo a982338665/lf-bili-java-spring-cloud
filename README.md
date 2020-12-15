@@ -2101,6 +2101,16 @@ CAP ：
         4.熔断框架比较
     
 ### 19.21  （131） Sentinel服务熔断无配置
+
+    1.启动sentinel 8080 【单独的jar包】
+    2.启动nacos 8848 【单独的jar包】
+    3.启动9003 和 9004
+    4.启动84
+    5.首先验证：通过84 是否会通过ribbon负载均衡，以轮询的方式 访问9003,9004
+        多次访问：localhost:84/consumer/fallback/1  交替出现9003,9004，即有负载均衡的效果
+        访问：localhost:84/consumer/fallback/4 会出现异常页面，对客户不友好，
+        所以需要对SentinelResource配置其他参数
+    
 ### 19.22  （132） Sentinel服务熔断只配置fallback
 ### 19.23  （133） Sentinel服务熔断只配置blockHandler
 ### 19.24  （134） Sentinel服务熔断配置fallback和blockHandler
