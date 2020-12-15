@@ -2081,7 +2081,18 @@ CAP ：
             1.启动nacos和Sentinel
             2.提供者9003/9004：
                 1.对照9001新建9003,9004
-            3.消费者84
+                2.测试：
+                    1.启动sentinel 8080 【单独的jar包】
+                    2.启动nacos 8848 【单独的jar包】
+                    3.启动9003 和 9004
+                    4.访问：正常使用
+                        localhost:9003/paymentSQL/1 
+                        localhost:9003/paymentSQL/4
+                        localhost:9004/paymentSQL/1
+                        localhost:9004/paymentSQL/4
+            3.消费者84：
+                1.对照83新建84
+                    
         3.Feign系列
         4.熔断框架比较
         
