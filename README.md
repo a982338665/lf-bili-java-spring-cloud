@@ -2074,6 +2074,18 @@ CAP ：
         ContextUtil-定义了上下文
     
 ### 19.20  （130） Sentinel服务熔断Ribbon环境预说
+    
+    1.服务熔断功能：
+        1.sentinel整合ribbon+openFeign+fallback
+        2.Ribbon系列
+            1.启动nacos和Sentinel
+            2.提供者9003/9004：
+                1.对照9001新建9003,9004
+            3.消费者84
+        3.Feign系列
+        4.熔断框架比较
+        
+    
 ### 19.21  （131） Sentinel服务熔断无配置
 ### 19.22  （132） Sentinel服务熔断只配置fallback
 ### 19.23  （133） Sentinel服务熔断只配置blockHandler
