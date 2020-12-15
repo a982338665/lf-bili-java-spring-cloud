@@ -2092,10 +2092,13 @@ CAP ：
                         localhost:9004/paymentSQL/4
             3.消费者84：
                 1.对照83新建84
-                    
+            4.84业务类：
+                CircleBreakerController：
+                1.目的：
+                    fallback只负责业务异常
+                    blockHandler只负责sentinel控制台配置违规
         3.Feign系列
         4.熔断框架比较
-        
     
 ### 19.21  （131） Sentinel服务熔断无配置
 ### 19.22  （132） Sentinel服务熔断只配置fallback
