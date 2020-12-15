@@ -2112,6 +2112,14 @@ CAP ：
         所以需要对SentinelResource配置其他参数
     
 ### 19.22  （132） Sentinel服务熔断只配置fallback
+
+    1.修改84：
+        @SentinelResource(value = "fallback",fallback = "handlerFallback") //fallback只负责业务异常
+    2.测试：
+        访问：localhost:84/consumer/fallback/4 出现兜底方法
+        {"code":444,"message":"兜底异常handlerFallback,exception内容  IllegalArgumentException,非法参数异常....","data":{"id":4,"serial":"null"}}
+        等同于Hystrix的服务降级
+        
 ### 19.23  （133） Sentinel服务熔断只配置blockHandler
 ### 19.24  （134） Sentinel服务熔断配置fallback和blockHandler
 ### 19.25  （135） Sentinel服务熔断exceptionsToIgnore
