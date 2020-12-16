@@ -2131,6 +2131,18 @@ CAP ：
         快速访问以上地址后，由于配置了降级规则，异常两个，所以会走进降级方法 blockHandler，出现限流降级结果
     
 ### 19.24  （134） Sentinel服务熔断配置fallback和blockHandler
+
+    1.修改84：
+        @SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler") 
+    2.配置sentinel：
+        簇点链路配置 流控降级规则后测试
+        配置流控 - QPS - 单机阈值1
+        访问：  localhost:84/consumer/fallback/1 
+        一秒一次点击正常访问，快速点击返回限流结果 【sentinel的限流方法blockHandler】
+        访问：  localhost:84/consumer/fallback/4 
+        一秒一次，由于是异常页面，返回【java错误：fallback = "handlerFallback"】
+        快速点击返回限流结果 【sentinel的限流方法blockHandler = "blockHandler"】,此时不再返回fallback内容，因为已达到限流条件
+
 ### 19.25  （135） Sentinel服务熔断exceptionsToIgnore
 ### 19.26  （136） Sentinel服务熔断OpenFeign
 ### 19.27  （137） Sentinel持久化规则
