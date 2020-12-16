@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * @auther zzyy
  * @create 2020-02-25 18:30
+ * 服务降级返回
  */
 @Component
 public class PaymentFallbackService implements PaymentService

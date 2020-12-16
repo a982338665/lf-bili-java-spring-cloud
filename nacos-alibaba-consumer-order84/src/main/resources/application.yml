@@ -21,6 +21,6 @@ service-url:
   nacos-user-service: http://nacos-payment-provider
 
 # 激活Sentinel对Feign的支持
-#feign:
-#  sentinel:
-#    enabled: true
+feign:
+  sentinel:
+    enabled: true

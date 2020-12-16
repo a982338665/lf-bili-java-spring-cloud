@@ -2154,6 +2154,31 @@ CAP ：
         localhost:84/consumer/fallback/5    走fallback
         
 ### 19.26  （136） Sentinel服务熔断OpenFeign
+    
+    1.修改84模块
+        pom:spring-cloud-starter-openfeign
+        yml:激活
+        启动类：@EnableFeignClients
+        service：@FeignClient(value = "nacos-payment-provider")
+        controller:...
+    2.启动9003,84
+    3.访问：
+        localhost:84/consumer/paymentSQL/1
+        测试84调用9003，此时故意关闭9003，看84消费侧是否自动降级，不会被耗死
+    4.sentinel，hystrix，resillience4j的区别
+                            sentinel                                hystrix                 resilience4j
+      隔离策略       信号量隔离（并发线程数限流）                线程池隔离/信号量隔离   信号量隔离  
+      熔断降级策略   基于响应时间，异常比率，异常数              基于异常比率            基于异常比率，响应时间
+      实时统计实现   滑动窗口（LeapArray）                       滑动窗口（基于Rxjava）  Ring bit buffer   
+      动态规则配置   支持多种数据源                              基于多种数据源          有限支持
+      拓展性         多个拓展点                                  插件的形式              接口的形式
+      基于注解的支持 支持                                        支持                    支持
+      限流           基于QPS，支持基于调用关系的限流             有限的支持              Rate Limiter
+      流量整形       支持预热模式，匀速器模式，预热排队模式      不支持                  简单的Rate Limiter模式 
+      系统自适应保护 支持                                        不支持                  不支持
+      控制台         提供开箱即用的控制台，可配置规则，          简单的监控查看          不提供控制台，可对接其他监控系统
+                     查看秒级监控，机器发现等
+        
 ### 19.27  （137） Sentinel持久化规则
 ## 20.spring-cloud Alibaba seata处理分布式事务
 ### 20.1   （138） 分布式事务问题由来
