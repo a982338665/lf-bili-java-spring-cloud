@@ -2121,6 +2121,15 @@ CAP ：
         等同于Hystrix的服务降级
         
 ### 19.23  （133） Sentinel服务熔断只配置blockHandler
+    
+    1.修改84：
+        @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentinel控制台配置违规
+    2.配置sentinel：
+        簇点链路配置 流控降级规则后测试
+        配置降级 - 异常数 - 2 - 时间窗口2s
+        访问：  localhost:84/consumer/fallback/4 出现错误页面 【因为没有配置fallback，而fallback管java运行时异常】
+        快速访问以上地址后，由于配置了降级规则，异常两个，所以会走进降级方法 blockHandler，出现限流降级结果
+    
 ### 19.24  （134） Sentinel服务熔断配置fallback和blockHandler
 ### 19.25  （135） Sentinel服务熔断exceptionsToIgnore
 ### 19.26  （136） Sentinel服务熔断OpenFeign
