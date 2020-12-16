@@ -2144,6 +2144,15 @@ CAP ：
         快速点击返回限流结果 【sentinel的限流方法blockHandler = "blockHandler"】,此时不再返回fallback内容，因为已达到限流条件
 
 ### 19.25  （135） Sentinel服务熔断exceptionsToIgnore
+
+    1.修改84：
+        @SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler",
+                    exceptionsToIgnore = {IllegalArgumentException.class})
+    2.异常忽略：假如报该异常，不再有fallback方法兜底，没有降级效果了
+        localhost:84/consumer/fallback/1    正常   
+        localhost:84/consumer/fallback/4    报错
+        localhost:84/consumer/fallback/5    走fallback
+        
 ### 19.26  （136） Sentinel服务熔断OpenFeign
 ### 19.27  （137） Sentinel持久化规则
 ## 20.spring-cloud Alibaba seata处理分布式事务
