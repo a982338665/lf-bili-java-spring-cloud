@@ -2180,6 +2180,63 @@ CAP ：
                      查看秒级监控，机器发现等
         
 ### 19.27  （137） Sentinel持久化规则
+
+    1.微服务重启会丢失已经配置的规则
+    2.是什么？
+        一旦重启应用，sentinel规则将消失，所以生产环境需要将配置规则持久化
+    3.怎么用？
+        1.将限流配置规则持久化到Nacos保存，只要刷新8401某个rest地址，sentinel控制台的流控规则就能看到，只要nacos里面的配置不删除，
+        针对8401上的sentinel上的流控规则持续有效
+    4.步骤
+        1.启动nacos    8848 
+        2.启动sentinel 8080
+        3.启动8401
+            访问：http://localhost:8401/rateLimit/byUrl   返回正常结果
+        4.回到sentinel控制台登录可见，刚才访问的路径 http://localhost:8401/rateLimit/byUrl
+            簇点链路--添加流控规则（QPS-阈值为1）
+            频繁访问 http://localhost:8401/rateLimit/byUrl 可触发流控规则 返回 Blocked by Sentinel (flow limiting)
+        5.重启8401，发现刚才 通过url配置的流控规则已丢失
+        ------------------------------------------------
+        6.修改8401
+            pom：sentinel-datasource-nacos
+            yml: datasource...
+        7.添加nacos业务规则配置：-- 此配置即为写入sentinel的流控规则
+            新建配置：
+                DataID:cloudalibaba-sentinel-service
+                Group:DEFAULT_GROUP
+                配置格式：JSON
+                配置内容：
+                    [
+                        {
+                            "resource": "/rateLimit/byUrl",
+                            "limitApp": "default",
+                            "grade": 1,
+                            "count": 1,
+                            "strategy": 0,
+                            "controlBehavior": 0,
+                            "clusterMode": false
+                        }
+                    ]
+                解释：
+                    "resource": "/rateLimit/byUrl", 资源名称
+                    "limitApp": "default",          来源应用
+                    "grade": 1,                     阈值类型：0表示线程数，1表示QPS
+                    "count": 1,                     单机阈值
+                    "strategy": 0,                  流控模式：0表示直接，1表示关联，2表示链路
+                    "controlBehavior": 0,           流控效果：0表示快速失败，1表示warm up，2表示排队等待
+                    "clusterMode": false,           是否集群
+        8.启动8401，访问 http://localhost:8401/rateLimit/byUrl
+            刷新sentinel，发现业务上述配置的业务规则已存在
+            频繁访问：http://localhost:8401/rateLimit/byUrl 
+            发现流控规则已生效
+        9.停止8401再看sentinel的流控规则是否还存在：丢失
+        10.重启8401查看sentinel流控规则：
+            1.未出现
+            2.访问 http://localhost:8401/rateLimit/byUrl 
+            3.重新刷新sentinel
+            4.出现流控规则
+            5.验证通过
+                    
 ## 20.spring-cloud Alibaba seata处理分布式事务
 ### 20.1   （138） 分布式事务问题由来
 ### 20.2   （139） Seata 术语
