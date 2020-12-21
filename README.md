@@ -2453,6 +2453,19 @@ CAP ：
     新建账户模块 seata-account-service2003
     
 ### 20.10  （147） Seata之@GloablTransactional验证
+    
+    1.数据库初始情况
+        select * from seata_order.t_order;      无数据
+        select * from seata_storage.t_storage;  1条
+        select * from seata_account.t_account;  1条
+    2.正常下单
+        依次启动 nacos，seata，2001,2002,2003
+        访问：localhost:2001/order/create?userId=1&productId=1&count=10&money=100
+            {"code":200,"message":"订单创建成功","data":null}
+        数据库情况：添加成功
+    3.超时异常，没加@GlobalTransactional
+    4.超时异常，添加@GlobalTransactional
+    
 ### 20.11  （148） Seata之原理简介
 ## 21.spring-cloud Alibaba 大厂面试题第三季
 ### 21.1   （149） 雪花算法上

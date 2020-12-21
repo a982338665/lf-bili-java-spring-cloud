@@ -73,3 +73,9 @@ CREATE TABLE `undo_log` (
                             PRIMARY KEY (`id`),
                             UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+select * from seata_order.t_order;
+select * from seata_storage.t_storage;
+select * from seata_account.t_account;
