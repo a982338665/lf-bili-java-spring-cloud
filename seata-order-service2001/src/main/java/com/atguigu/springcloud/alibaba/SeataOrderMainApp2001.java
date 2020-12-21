@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//取消数据源的自动创建
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//取消数据源的自动创建，使用配置类的方式
 public class SeataOrderMainApp2001
 {
 

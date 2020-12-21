@@ -2437,6 +2437,13 @@ CAP ：
     
 ### 20.6   （143） Seata之Order-Module代码上
 ### 20.7   （144） Seata之Order-Module代码下
+
+      5.domain
+      6.Dao接口实现
+      7.Service接口实现
+      8.Controller接口实现
+      9.Config配置
+
 ### 20.8   （145） Seata之Storage-Module说明
 ### 20.9   （146） Seata之Account-Module说明
 ### 20.10  （147） Seata之@GloablTransactional验证
