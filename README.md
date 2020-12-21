@@ -2469,6 +2469,7 @@ CAP ：
         t_account 报错  
         结论：无分布式事务
     4.超时异常，添加@GlobalTransactional
+        分布式事务生效
     
 ### 20.11  （148） Seata之原理简介
 ## 21.spring-cloud Alibaba 大厂面试题第三季
