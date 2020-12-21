@@ -2419,6 +2419,22 @@ CAP ：
             ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
             
 ### 20.5   （142） Seata之Order-Module配置搭建
+
+    1.业务需求：下订单-减库存-扣余额-改状态
+    2.新建订单模块：seata-order-service2001
+        1.pom
+        2.yml
+        3.file.conf
+        4.registry.conf
+        5.domain
+        6.Dao接口实现
+        7.Service接口实现
+        8.Controller接口实现
+        9.Config配置
+        10.主启动
+    3.新建库存模块 seata-storage-service2002
+    4.新建账户模块 seata-account-service2003
+    
 ### 20.6   （143） Seata之Order-Module代码上
 ### 20.7   （144） Seata之Order-Module代码下
 ### 20.8   （145） Seata之Storage-Module说明
