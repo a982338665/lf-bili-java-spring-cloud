@@ -2277,7 +2277,147 @@ CAP ：
             5.TC调度XID下管辖的全部分支事务完成提交或回滚请求
     
 ### 20.3   （140） Seata-Server 安装
+
+    1.下载：https://github.com/seata/seata/releases
+        https://github.com/seata/seata/releases/download/v0.9.0/seata-server-0.9.0.zip
+    2.此处使用 v0.9.0 
+    3.使用：
+        1.本地@Transactional：spring事务
+        2.全局@GlobalTransactional：在业务类上直接添加 
+            seata分布式交易解决方案
+            直接使用@GlobalTransactional：在业务类上直接添加 
+    4.步骤
+        1.seata-server-0.9.0.zip解压到指定目录并修改conf目录下的file.json配置文件
+            1.先备份原文件file.conf
+            2.主要修改：自定义事务组名称+事务日志存储模式为db+数据库连接信息
+            3.file.conf
+                1.service模块：自定义事务组名称
+                    service {
+                      #vgroup->rgroup
+                      #将default修改为fsp_tx_group，名字是随便起的，此为【自定义事务组名称】
+                      vgroup_mapping.my_test_tx_group = "fsp_tx_group"
+                      #only support single node
+                      default.grouplist = "127.0.0.1:8091"
+                      #degrade current not support
+                      enableDegrade = false
+                      #disable
+                      disable = false
+                      #unit ms,s,m,h,d represents milliseconds, seconds, minutes, hours, days, default permanent
+                      max.commit.retry.timeout = "-1"
+                      max.rollback.retry.timeout = "-1"
+                    }
+                2.store模块：事务日志存储模式为db+数据库连接信息
+                    ## transaction log store
+                    store {
+                      ## store mode: file、db
+                      ## mode = "file" 将文件修改为db
+                      mode = "db"
+                      ## file store
+                      file {
+                        dir = "sessionStore"
+                    
+                        # branch session size , if exceeded first try compress lockkey, still exceeded throws exceptions
+                        max-branch-session-size = 16384
+                        # globe session size , if exceeded throws exceptions
+                        max-global-session-size = 512
+                        # file buffer size , if exceeded allocate new buffer
+                        file-write-buffer-cache-size = 16384
+                        # when recover batch read size
+                        session.reload.read_size = 100
+                        # async, sync
+                        flush-disk-mode = async
+                      }
+                    
+                      ## database store
+                      db {
+                        ## the implement of javax.sql.DataSource, such as DruidDataSource(druid)/BasicDataSource(dbcp) etc.
+                        datasource = "dbcp"
+                        ## mysql/oracle/h2/oceanbase etc.
+                        db-type = "mysql"
+                        driver-class-name = "com.mysql.jdbc.Driver"
+                        url = "jdbc:mysql://127.0.0.1:3306/seata"
+                        user = "root"
+                        password = "root"
+                        min-conn = 1
+                        max-conn = 3
+                        global.table = "global_table"
+                        branch.table = "branch_table"
+                        lock-table = "lock_table"
+                        query-limit = 100
+                      }
+                    }
+                4.在本地数据库创建 数据库seata
+                5.在数据库seata中建表：
+                    sql在安装目录下 D:\install-soft\chrome\seata-server-0.9.0\seata\conf\db_store.sql
+                    导入执行
+                6.修改D:\install-soft\chrome\seata-server-0.9.0\seata\conf下的registry.conf文件
+                    registry {
+                      # file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
+                      # type = "file"
+                      type = "nacos"#【修改项】
+                      nacos {
+                        serverAddr = "localhost:8848"#【修改项】
+                        namespace = ""
+                        cluster = "default"
+                      }
+                7.先启动nacos-8848
+                8.在启动seata-server
+            
 ### 20.4   （141） Seata业务数据库准备
+    
+    1.订单、库存、账户-业务数据库准备
+    2.以下演示保证【先启动nacos后启动seata】，保证两个都ok
+        seata没启动报错：no available server to connect
+    3.分布式事务的业务说明
+        1.业务说明
+            1.会创建三个服务：订单，库存，账户服务
+            2.该操作会跨三次数据库，有两次rpc，明显会有分布式事务问题
+        2.下订单-减库存-减账户（余额）
+    4.创建业务数据库及业务表：
+        1.存储订单数据库       create database seata_order  
+            create table t_order (
+                `id` bigint(11) not null auto_increment primary key,
+                `user_id` bigint(11) default null comment '用户id',
+                `product_id` bigint(11) default null comment '产品id',
+                `count` int(11) default null comment '数量',
+                `money` decimal(11,0) default null comment '金额',
+                `status` int(11) default null comment '订单状态 0-创建中 1-已完结'
+            ) engine=innodb auto_increment=7 default charset=utf8;   
+        2.存储库存的数据库     create database seata_storage
+            create table t_storage (
+                `id` bigint(11) not null auto_increment primary key,
+                `product_id` bigint(11) default null comment '产品id',
+                `total` int(11) default null comment '总库存',
+                `used` int(11) default null comment '已用库存',
+                `residue` int(11) default null comment '剩余库存'
+            ) engine=innodb auto_increment=2 default charset=utf8;
+            insert into seata_storage.t_storage(`id`,`product_id`,`total`,`used`,`residue`) values ('1','1','100','0','100');
+        3.存储账户信息的数据库 create database seata_account
+            create table t_account (
+                `id` bigint(11) not null auto_increment primary key,
+                `user_id` bigint(11) default null comment '用户id',
+                `total` int(11) default null comment '总余额',
+                `used` int(11) default null comment '已用余额',
+                `residue` int(11) default null comment '剩余余额'
+            ) engine=innodb auto_increment=2 default charset=utf8;
+            insert into seata_storage.t_account(`id`,`user_id`,`total`,`used`,`residue`) values ('1','1','1000','0','1000');
+    5.按照上述3库分别创建对应的回滚日志表
+        1.订单-库存-账户 三个库下 都需要建各自的回滚日志表
+        2.\seata-server-0.9.0\seata\conf\目录下的db_undo_log.sql
+            CREATE TABLE `undo_log` (
+              `id` bigint(20) NOT NULL AUTO_INCREMENT,
+              `branch_id` bigint(20) NOT NULL,
+              `xid` varchar(100) NOT NULL,
+              `context` varchar(128) NOT NULL,
+              `rollback_info` longblob NOT NULL,
+              `log_status` int(11) NOT NULL,
+              `log_created` datetime NOT NULL,
+              `log_modified` datetime NOT NULL,
+              `ext` varchar(100) DEFAULT NULL,
+              PRIMARY KEY (`id`),
+              UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+            
 ### 20.5   （142） Seata之Order-Module配置搭建
 ### 20.6   （143） Seata之Order-Module代码上
 ### 20.7   （144） Seata之Order-Module代码下
