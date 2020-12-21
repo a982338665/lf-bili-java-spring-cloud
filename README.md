@@ -2464,6 +2464,10 @@ CAP ：
             {"code":200,"message":"订单创建成功","data":null}
         数据库情况：添加成功
     3.超时异常，没加@GlobalTransactional
+        t_order 的状态为 0
+        t_storage 库存被扣掉
+        t_account 报错  
+        结论：无分布式事务
     4.超时异常，添加@GlobalTransactional
     
 ### 20.11  （148） Seata之原理简介

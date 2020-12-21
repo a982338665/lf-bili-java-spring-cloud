@@ -32,8 +32,8 @@ public class AccountServiceImpl implements AccountService {
     public void decrease(Long userId, BigDecimal money) {
         LOGGER.info("------->account-service中扣减账户余额开始");
         //模拟超时异常，全局事务回滚
-        //暂停几秒钟线程
-//        try { TimeUnit.SECONDS.sleep(20); } catch (InterruptedException e) { e.printStackTrace(); }
+        //暂停几秒钟线程，因为使用的是feign，所以默认1秒，20秒肯定会报超时异常
+        try { TimeUnit.SECONDS.sleep(20); } catch (InterruptedException e) { e.printStackTrace(); }
         accountDao.decrease(userId,money);
         LOGGER.info("------->account-service中扣减账户余额结束");
     }
