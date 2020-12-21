@@ -2445,7 +2445,13 @@ CAP ：
       9.Config配置
 
 ### 20.8   （145） Seata之Storage-Module说明
+    
+    新建库存模块 seata-storage-service2002
+    
 ### 20.9   （146） Seata之Account-Module说明
+    
+    新建账户模块 seata-account-service2003
+    
 ### 20.10  （147） Seata之@GloablTransactional验证
 ### 20.11  （148） Seata之原理简介
 ## 21.spring-cloud Alibaba 大厂面试题第三季
